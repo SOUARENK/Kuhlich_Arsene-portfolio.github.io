@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arsène Kuhlich — Portfolio Interactif</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple:#6B1D5E; --purple-dark:#3D1135; --purple-mid:#8B3D7E;
+  --gold:#C8960C; --gold-light:#E8B830; --gold-pale:#FDF6E3;
+  --bg:#F7F5F2; --bg-warm:#FAF8F5; --text:#1E1E1E; --text-mid:#555; --text-light:#888;
+  --card:#fff; --border:#E6E2DD;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06); --shadow-md:0 4px 24px rgba(107,29,94,.08); --shadow-lg:0 12px 48px rgba(107,29,94,.12);
+  --radius:20px; --radius-sm:12px;
+  --ease:cubic-bezier(.4,0,.2,1);
+  /* Year colors from fresque */
+  --y1:#89C4E1; --y2:#F0B860; --y3:#7BC47F;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+
+/* ═══ HERO ═══ */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/cover.jpg') center/cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(61,17,53,.25) 0%,rgba(61,17,53,.5) 40%,rgba(61,17,53,.92) 72%,rgba(61,17,53,1) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px}
+.hero-content{position:relative;z-index:2;padding:3rem 2.5rem 4.5rem;max-width:920px;animation:fadeUp .9s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+
+.hero-school{display:inline-flex;align-items:center;gap:10px;padding:6px 18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:100px;color:var(--gold-light);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;backdrop-filter:blur(8px)}
+.hero-school::before{content:'';width:8px;height:8px;background:var(--gold-light);border-radius:50%;animation:glow 2s infinite alternate}
+@keyframes glow{from{opacity:.6;transform:scale(.9)}to{opacity:1;transform:scale(1.2)}}
+
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);color:#fff;font-weight:400;line-height:1.05;margin-bottom:1rem}
+.hero h1 em{color:var(--gold-light);font-style:italic}
+.hero-intro{font-size:1.1rem;color:rgba(255,255,255,.75);max-width:640px;font-weight:300;margin-bottom:2rem;line-height:1.7}
+.hero-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.hero-photo{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold-light);object-fit:cover}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;background:var(--gold);color:var(--purple-dark);font-weight:700;font-size:.9rem;border-radius:100px;text-decoration:none;transition:all .35s var(--ease)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,150,12,.35)}
+.btn-gold svg{width:16px;height:16px}
+.btn-outline{padding:14px 30px;background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#fff;font-weight:600;font-size:.9rem;border-radius:100px;text-decoration:none;transition:all .35s var(--ease)}
+.btn-outline:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06)}
+
+/* ═══ NAV ═══ */
+.nav{position:sticky;top:0;z-index:100;background:rgba(247,245,242,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;padding:.6rem 1.5rem}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-link{white-space:nowrap;text-decoration:none;color:var(--text-light);font-size:.82rem;font-weight:600;padding:8px 18px;border-radius:100px;transition:all .3s var(--ease)}
+.nav-link:hover,.nav-link.active{color:var(--purple);background:rgba(107,29,94,.06)}
+
+/* ═══ LAYOUT ═══ */
+.wrap{max-width:1280px;margin:0 auto;padding:0 2rem}
+.sec{padding:5rem 0 2rem}
+.sec-label{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--purple-dark);font-weight:400;line-height:1.2}
+.sec-sub{color:var(--text-mid);margin-top:.6rem;font-size:.95rem;max-width:660px}
+
+/* ═══ CV BANNER ═══ */
+.cv-banner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;margin:3rem 0;box-shadow:var(--shadow-sm)}
+.cv-banner h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--purple-dark);font-weight:600;margin-bottom:.3rem}
+.cv-banner p{color:var(--text-mid);font-size:.9rem}
+.btn-purple{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:var(--purple);color:#fff;font-weight:700;font-size:.88rem;border-radius:100px;text-decoration:none;transition:all .3s var(--ease);flex-shrink:0}
+.btn-purple:hover{background:var(--purple-dark);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-purple svg{width:17px;height:17px}
+
+/* ═══ CARDS GRID ═══ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:1.5rem;margin-top:2.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .4s var(--ease);cursor:pointer}
+.card:hover{border-color:rgba(107,29,94,.18);box-shadow:var(--shadow-lg);transform:translateY(-5px)}
+.card-img{position:relative;height:200px;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .card-img img{transform:scale(1.06)}
+.card-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(0,0,0,.45),transparent)}
+.card-badge{position:absolute;top:14px;left:14px;padding:5px 14px;background:rgba(255,255,255,.95);border-radius:100px;font-size:.68rem;font-weight:800;color:var(--purple);letter-spacing:.8px;text-transform:uppercase;z-index:2}
+.card-time{position:absolute;top:14px;right:14px;padding:5px 14px;background:rgba(0,0,0,.55);border-radius:100px;font-size:.72rem;font-weight:600;color:#fff;z-index:2;backdrop-filter:blur(4px)}
+.card-body{padding:1.4rem 1.6rem}
+.card-co{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}
+.card-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.card-co-name{font-size:.72rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1px}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--text);font-weight:600;line-height:1.3;margin-bottom:.6rem}
+.card-excerpt{font-size:.86rem;color:var(--text-mid);line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.chip{padding:3px 11px;background:var(--gold-pale);color:var(--purple);font-size:.7rem;font-weight:700;border-radius:100px}
+.card-toggle{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;background:var(--bg-warm);font-size:.8rem;font-weight:700;color:var(--purple);transition:background .3s}
+.card:hover .card-toggle{background:var(--gold-pale)}
+.card-toggle svg{width:14px;height:14px;transition:transform .3s}
+.card.open .card-toggle svg{transform:rotate(180deg)}
+
+/* ═══ DETAIL ═══ */
+.card-detail{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);background:var(--bg-warm);border-top:1px solid transparent}
+.card.open .card-detail{max-height:3000px;border-top-color:var(--border)}
+.card-detail-inner{padding:1.6rem}
+.d-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:.4rem}
+.d-text{font-size:.88rem;color:var(--text);line-height:1.75;margin-bottom:1.2rem}
+.d-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem}
+.d-box{padding:14px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:.84rem;line-height:1.6}
+.d-box strong{display:block;color:var(--purple);font-size:.68rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.d-img{margin:1rem 0;border-radius:var(--radius-sm);overflow:hidden}
+.d-img img{width:100%}
+.pdf-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--purple);color:#fff;font-size:.82rem;font-weight:600;border-radius:100px;text-decoration:none;transition:all .3s var(--ease)}
+.pdf-btn:hover{background:var(--purple-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(107,29,94,.25)}
+.pdf-btn svg{width:15px;height:15px}
+.pdf-icon{vertical-align:middle}
+
+/* ═══ FRESQUE ═══ */
+.fresque-wrap{margin-top:2.5rem}
+.fresque-img-container{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);cursor:zoom-in;box-shadow:var(--shadow-md);transition:all .4s var(--ease)}
+.fresque-img-container:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.fresque-img-container img{width:100%;display:block}
+.fresque-zoom-hint{position:absolute;bottom:16px;right:16px;padding:8px 16px;background:rgba(0,0,0,.6);color:#fff;font-size:.78rem;font-weight:600;border-radius:100px;backdrop-filter:blur(6px);pointer-events:none;transition:opacity .3s}
+
+/* Fresque lightbox */
+.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);cursor:zoom-out;justify-content:center;align-items:center;padding:2rem}
+.lightbox.active{display:flex}
+.lightbox img{max-width:95vw;max-height:90vh;border-radius:8px;box-shadow:0 20px 80px rgba(0,0,0,.5)}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;background:rgba(255,255,255,.15);border:none;border-radius:50%;color:#fff;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.lightbox-close:hover{background:rgba(255,255,255,.3)}
+
+/* Fresque phases */
+.fresque-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.phase{padding:1.8rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--card);transition:all .3s var(--ease)}
+.phase:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.phase-bar{width:100%;height:5px;border-radius:5px;margin-bottom:1rem}
+.phase h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;margin-bottom:.5rem;color:var(--purple-dark)}
+.phase p{font-size:.84rem;color:var(--text-mid);line-height:1.7}
+.phase-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.8rem}
+.phase-tag{padding:2px 10px;border-radius:100px;font-size:.68rem;font-weight:700;border:1px solid}
+
+/* ═══ SKILLS ═══ */
+.skills-group{margin-top:1.5rem}
+.skills-group-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:.7rem}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:8px 18px;background:var(--card);border:1px solid var(--border);border-radius:100px;font-size:.82rem;font-weight:500;color:var(--text);transition:all .3s var(--ease)}
+.pill:hover{border-color:var(--purple-mid);color:var(--purple);background:rgba(107,29,94,.03)}
+.pill.hl{background:var(--gold-pale);border-color:var(--gold);color:var(--purple);font-weight:700}
+
+/* ═══ RECOMMANDATIONS ═══ */
+.reco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;margin-top:2.5rem}
+.reco{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all .3s var(--ease)}
+.reco:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.reco-q{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);line-height:1;margin-bottom:.8rem}
+.reco-txt{font-size:.9rem;color:var(--text);line-height:1.75;font-style:italic;margin-bottom:1.2rem}
+.reco-who{font-size:.82rem;font-weight:700;color:var(--purple)}
+.reco-role{font-size:.76rem;color:var(--text-light)}
+
+/* ═══ CONTACT ═══ */
+.contact{text-align:center;padding:5rem 0}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.contact-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--card);border:1px solid var(--border);border-radius:100px;text-decoration:none;color:var(--text);font-weight:600;font-size:.88rem;transition:all .3s var(--ease)}
+.contact-link:hover{border-color:var(--purple);color:var(--purple);box-shadow:var(--shadow-md)}
+
+footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;border-top:1px solid var(--border)}
+
+/* ═══ ANIMATIONS ═══ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.vis{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s} .reveal-d2{transition-delay:.2s} .reveal-d3{transition-delay:.3s}
+
+
+/* ═══ VALORISATION TABLES ═══ */
+.val-table-wrap{overflow-x:auto;margin-top:1.5rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--card)}
+.val-table{width:100%;border-collapse:collapse;font-size:.84rem}
+.val-table thead{background:var(--purple);color:#fff}
+.val-table th{padding:12px 16px;text-align:left;font-weight:700;font-size:.74rem;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.val-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.val-table tr:last-child td{border-bottom:none}
+.val-table tr:hover{background:rgba(107,29,94,.02)}
+.val-table .act-col{font-weight:600;color:var(--purple-dark);min-width:160px}
+.val-tab-nav{display:flex;gap:8px;margin-top:2rem;margin-bottom:1rem;flex-wrap:wrap}
+.val-tab-btn{padding:8px 20px;border:1.5px solid var(--border);border-radius:100px;background:var(--card);font-size:.82rem;font-weight:600;color:var(--text-mid);cursor:pointer;transition:all .3s var(--ease)}
+.val-tab-btn:hover{border-color:var(--purple-mid);color:var(--purple)}
+.val-tab-btn.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.val-panel{display:none}
+.val-panel.active{display:block}
+
+@media(max-width:768px){
+  .grid,.reco-grid{grid-template-columns:1fr}
+  .fresque-phases{grid-template-columns:1fr}
+  .cv-banner{flex-direction:column;text-align:center;padding:2rem}
+  .d-grid{grid-template-columns:1fr}
+  .hero{min-height:90vh}
+  .hero-content{padding:2rem 1.5rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-school">Arts et Métiers · Bachelor de Technologie · Bordeaux</div>
+    <h1>Arsène <em>Kuhlich</em></h1>
+    <p class="hero-intro">Étudiant ingénieur en conception mécanique, en contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>. Passionné par l'innovation industrielle, la simulation et le développement de solutions techniques concrètes.</p>
+    <div class="hero-row">
+      <img src="images/profile.jpg" alt="Arsène Kuhlich" class="hero-photo">
+      <a href="#missions" class="btn-gold">Découvrir mes missions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      <a href="#contact" class="btn-outline">Me contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#missions" class="nav-link active">Missions</a>
+    <a href="#valorisation" class="nav-link">Valorisation</a>
+    <a href="#fresque" class="nav-link">Fresque</a>
+    <a href="#competences" class="nav-link">Compétences</a>
+    <a href="#recommandations" class="nav-link">Recommandations</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ═══ CV ═══ -->
+  <div class="cv-banner reveal">
+    <div>
+      <h3>Arsène Kuhlich</h3>
+      <p>20 ans · ENSAM Bordeaux · Contrat Pro Schneider Electric · Recherche alternance ingénieur sept. 2026 – sept. 2029</p>
+    </div>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+      <a href="pdf/cv.pdf" target="_blank" class="btn-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Curriculum Vitae</a>
+      <a href="pdf/presentation-personnelle.pdf" target="_blank" class="btn-purple" style="background:var(--gold);color:var(--purple-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>Présentation personnelle</a>
+    </div>
+  </div>
+
+  <!-- ═══ MISSIONS ═══ -->
+  <section class="sec" id="missions">
+    <div class="reveal">
+      <span class="sec-label">Expériences clés</span>
+      <h2 class="sec-title">Mes Missions</h2>
+      <p class="sec-sub">Cliquez sur une carte pour afficher le détail complet, puis accédez à la fiche PDF pour aller plus loin.</p>
+    </div>
+    <div class="grid">
+
+      <!-- MISSION 6 — Contrat Pro Schneider -->
+      <div class="card reveal" onclick="toggle(this)">
+        <div class="card-img">
+          <img src="images/vigi-springs.jpg" alt="Mécanique Vigi">
+          <span class="card-badge">Contrat Pro</span>
+          <span class="card-time">2025–2026 · 9 mois</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:#3DCD58"></div><span class="card-co-name">Schneider Electric — Eybens</span></div>
+          <h3>Optimisation de l'effort moteur — Mécanique Vigi</h3>
+          <p class="card-excerpt">Proposer des solutions mécaniques pour optimiser l'effort moteur du disjoncteur différentiel Vigi avant et après vieillissement. Simulation ANSYS Rigid Body, tomographie, caméra Keyence + IA.</p>
+          <div class="card-chips"><span class="chip">ANSYS Rigid Body</span><span class="chip">Creo</span><span class="chip">Keyence + IA</span><span class="chip">Tomographie</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div class="d-label">Objectifs</div>
+          <div class="d-text">Identifier les causes mécaniques de la perte d'effort moteur après vieillissement · Réaliser des mesures comparatives · Proposer des pistes de reconception (formes, matériaux, tolérances) · Tester des prototypes · Garantir la fiabilité à long terme</div>
+          <div class="d-label">Activités</div>
+          <div class="d-text">Analyse historique de l'effort moteur · Modèle de simulation ANSYS (Rigid Body) · Acquisition caméra rapide · Tests mécanique seule et produit complet · Tomographie · Caractérisation de ressorts · Vieillissement 28 jours chaleur humide · Étude de faisabilité caméra Keyence + IA</div>
+          <div class="d-label">Fait marquant</div>
+          <div class="d-text">La personne en charge du Vigi est partie en congé maternité puis a démissionné. J'ai monté rapidement en compétences en autonomie, sans passation complète, en sollicitant activement différents experts.</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Ce que j'ai aimé</strong>Collaborer avec des experts variés — de l'architecte produit à l'opérateur de ligne de production.</div>
+            <div class="d-box"><strong>Résultats</strong>Montée en compétences ANSYS, gestion de projet transverse usine / labo / bureau d'études.</div>
+          </div>
+          <a href="pdf/mission-vigi.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche mission complète (PDF)</a>
+        </div></div>
+      </div>
+
+      <!-- MISSION 5 — Stage Technicien Schneider -->
+      <div class="card reveal reveal-d1" onclick="toggle(this)">
+        <div class="card-img">
+          <img src="images/cae-slide.jpg" alt="Banc CAE Schneider">
+          <span class="card-badge">Stage Technicien</span>
+          <span class="card-time">2024–2025 · 3 mois</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:#3DCD58"></div><span class="card-co-name">Schneider Electric — Eybens</span></div>
+          <h3>Optimisation des positions sur les bancs CAE</h3>
+          <p class="card-excerpt">Développer une méthode pour corriger les écarts de positionnement des bancs de test CAE pour les disjoncteurs MCB IC60. Résultat : économie de 30 000 € pour le bureau d'étude.</p>
+          <div class="card-chips"><span class="chip">Creo</span><span class="chip">CETOL</span><span class="chip">Métrologie</span><span class="chip">Normes GPS</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div class="d-label">Objectifs</div>
+          <div class="d-text">Développer des fonctions correctives pour chaque Condition d'Adaptabilité Fonctionnelle (CAE) · Éviter des coûts industriels de 30 000 €</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Résultat clé</strong>Équation corrective appliquée, économie directe de 30 000 €</div>
+            <div class="d-box"><strong>Apprentissage</strong>Métrologie, analyse statistique, enjeux industriels concrets</div>
+          </div>
+          <a href="pdf/mission-cae.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche mission complète (PDF)</a>
+        </div></div>
+      </div>
+
+      <!-- MISSION 1 — Détection poussière -->
+      <div class="card reveal reveal-d2" onclick="toggle(this)">
+        <div class="card-img">
+          <img src="images/dust-system.jpg" alt="Système détection poussière">
+          <span class="card-badge">Stage Mobilité</span>
+          <span class="card-time">2023–2024 · 2 mois</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:#E4002B"></div><span class="card-co-name">Freudenberg — Allemagne</span></div>
+          <h3>Détection de poussière par caméra IA</h3>
+          <p class="card-excerpt">Prototype de détection de poussière en temps réel pour salles blanches, via une caméra industrielle IDS-NXT et une intelligence artificielle entraînée sur mesure.</p>
+          <div class="card-chips"><span class="chip">Machine Learning</span><span class="chip">IDS NXT</span><span class="chip">Traitement d'image</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div class="d-img"><img src="images/dust-ai.jpg" alt="IDS Lighthouse - Dust Detection"></div>
+          <div class="d-label">Mission</div>
+          <div class="d-text">Concevoir un système prototype pour détecter la poussière en live dans les salles blanches, au niveau des portes d'entrée, afin de limiter l'arrivée de bactéries.</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Fait marquant</strong>Mise en place de la totalité de l'alimentation de données et du développement de l'IA</div>
+            <div class="d-box"><strong>Apprentissage</strong>Éclairage industriel, traitement d'image, développement IA</div>
+          </div>
+          <a href="pdf/mission-poussiere.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche mission complète (PDF)</a>
+        </div></div>
+      </div>
+
+      <!-- MISSION 2 — Hänel -->
+      <div class="card reveal" onclick="toggle(this)">
+        <div class="card-img">
+          <img src="images/hanel-panel.jpg" alt="Panneau Hänel">
+          <span class="card-badge">Stage Mobilité</span>
+          <span class="card-time">2023–2024 · 4 sem.</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:#E4002B"></div><span class="card-co-name">Freudenberg — Allemagne</span></div>
+          <h3>Installation ascenseur industriel Lean-Lift Hänel</h3>
+          <p class="card-excerpt">Paramétrer un système de stockage industriel, référencer tous les polymères et élastomères, créer les modes opératoires et former les utilisateurs.</p>
+          <div class="card-chips"><span class="chip">Lean</span><span class="chip">Logistique</span><span class="chip">MOP</span><span class="chip">Formation</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div class="d-label">Mission</div>
+          <div class="d-text">Changer l'emplacement de tous les polymères et élastomères vers un ascenseur industriel Lean-Lift Hänel. Vérifier conformité sécurité, programmer l'ascenseur, créer les MOP, former les utilisateurs.</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Ce que j'ai aimé</strong>Aider le service à travailler plus efficacement</div>
+            <div class="d-box"><strong>Apprentissage</strong>Organisation de projet, MOP, interaction machines industrielles</div>
+          </div>
+          <a href="pdf/mission-hanel.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche mission complète (PDF)</a>
+        </div></div>
+      </div>
+
+      <!-- MISSION 3 — MERI -->
+      <div class="card reveal reveal-d1" onclick="toggle(this)">
+        <div class="card-img">
+          <img src="images/meri-badge.jpg" alt="Projet MERI" style="object-fit:contain;background:#1a0f2e">
+          <span class="card-badge">Projet Académique</span>
+          <span class="card-time">2023–2025 · 2 ans</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:var(--purple)"></div><span class="card-co-name">ENSAM — Bordeaux</span></div>
+          <h3>MERI — Chaîne de production de bougies automatisée</h3>
+          <p class="card-excerpt">Responsable du WP de refroidissement (WP2300) sur une maquette évolutive représentative d'une industrie. Programmation Arduino, CAO/FAO, soudage.</p>
+          <div class="card-chips"><span class="chip">Arduino / C++</span><span class="chip">Catia V5</span><span class="chip">CAO/FAO</span><span class="chip">Soudage</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+            <div class="d-img" style="flex:1;min-width:250px"><img src="images/meri-schema.jpg" alt="Schéma MERI"></div>
+            <div class="d-img" style="width:180px"><img src="images/meri-top.jpg" alt="WP2300 vue du dessus"></div>
+          </div>
+          <div class="d-label">Mission</div>
+          <div class="d-text">Premier projet technique structurant du cursus : réaliser une maquette évolutive en vitrine de la formation Bachelor. Application concrète des connaissances en travail d'équipe et conception d'une ligne de production de bougies automatisée.</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Ce que j'ai aimé</strong>Ne pas être limité sur les idées et innovations à apporter</div>
+            <div class="d-box"><strong>Apprentissage</strong>Notions industrielles, travail en groupe, programmation Arduino</div>
+          </div>
+          <a href="pdf/mission-meri.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche mission complète (PDF)</a>
+        </div></div>
+      </div>
+
+      <!-- MISSION 4 — Becton Dickinson -->
+      <div class="card reveal reveal-d2" onclick="toggle(this)">
+        <div class="card-img">
+          <img src="images/bd-timeline.jpg" alt="Becton Dickinson" style="object-fit:contain;background:#fff">
+          <span class="card-badge">Stage Exécutant</span>
+          <span class="card-time">2023–2024 · 4 sem.</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:#F57C00"></div><span class="card-co-name">Becton Dickinson — Pont de Claix</span></div>
+          <h3>Service de Métrologie — Industrie pharmaceutique</h3>
+          <p class="card-excerpt">Étalonnage d'instruments, vérification de matériel et contribution au projet eDHR sur un site produisant ~1M de seringues/jour.</p>
+          <div class="card-chips"><span class="chip">Métrologie</span><span class="chip">Étalonnage</span><span class="chip">SQL</span><span class="chip">Blue Mountain</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div class="d-label">Mission</div>
+          <div class="d-text">Première immersion en milieu industriel : comparaison systématique et périodique des instruments de mesure. Contribution au projet eDHR (informatisation des données de production).</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Ce que j'ai aimé</strong>Découvrir les services impliqués dans la production (maintenance, logistique, finances)</div>
+            <div class="d-box"><strong>Apprentissage</strong>Utilité du service métrologie, monde de l'entreprise, SQL</div>
+          </div>
+          <a href="pdf/mission-bd.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche mission complète (PDF)</a>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ VALORISATION D'EXPERIENCE ═══ -->
+  <section class="sec" id="valorisation">
+    <div class="reveal">
+      <span class="sec-label">Savoirs · Savoir-faire · Savoir-être</span>
+      <h2 class="sec-title">Tableaux de Valorisation d'Expérience</h2>
+      <p class="sec-sub">Synthèse structurée des compétences développées à chaque étape de mon parcours.</p>
+    </div>
+
+    <div class="val-tab-nav reveal">
+      <button class="val-tab-btn active" onclick="showTab(0)">1/3 — Stages Mobilité</button>
+      <button class="val-tab-btn" onclick="showTab(1)">2/3 — MERI, BD & Cadets</button>
+      <button class="val-tab-btn" onclick="showTab(2)">3/3 — Schneider Electric</button>
+    </div>
+
+    <!-- TAB 1 -->
+    <div class="val-panel active reveal" id="vtab0">
+      <div class="val-table-wrap">
+        <table class="val-table">
+          <thead><tr><th>Activité</th><th>Savoir</th><th>Savoir-faire</th><th>Savoir-être</th><th>Exemple</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="act-col">Détection de Poussière<br><small style="color:var(--text-light)">FTI [1/4]</small></td>
+              <td>Configuration de caméra IDS nxt · Traitement d'images</td>
+              <td>Intégration sur un système · Programmation IA</td>
+              <td>Curiosité · Esprit d'analyse · Précision · Résilience</td>
+              <td>Fabrication d'un système de simulation de salle blanche · Utilisation du logiciel IDS nxt</td>
+            </tr>
+            <tr>
+              <td class="act-col">Installation Hänel<br><small style="color:var(--text-light)">FTI [2/4]</small></td>
+              <td>Configuration de l'ascenseur · Adaptation aux nouvelles pratiques</td>
+              <td>Gestion des stocks logistiques · Synthétiser · Trouver des alternatives</td>
+              <td>Précision · Rigueur · Sens du service · Écoute</td>
+              <td>Configuration du logiciel · Mise en place de MOP et réunions d'explication</td>
+            </tr>
+            <tr>
+              <td class="act-col">Maker Space FTI<br><small style="color:var(--text-light)">FTI [3/4]</small></td>
+              <td>Besoins technologiques · Gestion de projet</td>
+              <td>Aménagement d'espaces · Maintenance équipements (Stratasys J55, Ultimaker 4S)</td>
+              <td>Collaboration · Innovation · Curiosité</td>
+              <td>Installation imprimante Stratasys J55 · Estimation prix de location et budget</td>
+            </tr>
+            <tr>
+              <td class="act-col">R&D Hydrogène & Piles à combustible<br><small style="color:var(--text-light)">FTI [4/4]</small></td>
+              <td>Matériaux thermofusibles · Alternatives aux PFAS · Procédés de transformation</td>
+              <td>Vérification des propriétés · Suivi fabrication d'échantillons</td>
+              <td>Collaboration · Adaptation aux exigences client</td>
+              <td>Tests plastiques avec alternatives de forces/températures · Envoi de plaques 0.2mm pour 5 plastiques distincts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 2 -->
+    <div class="val-panel" id="vtab1">
+      <div class="val-table-wrap">
+        <table class="val-table">
+          <thead><tr><th>Activité</th><th>Savoir</th><th>Savoir-faire</th><th>Savoir-être</th><th>Exemple</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="act-col">Projet MERI<br><small style="color:var(--text-light)">Chaîne de production de bougies</small></td>
+              <td>Gestion d'équipe · CAO/FAO Catia V5 · Câblage Arduino</td>
+              <td>Communication · Gestion des conflits · Planification · Prototypage · Modélisation 3D · Programmation C++ · Soudage</td>
+              <td>Prise de décision · Organisation · Esprit d'équipe · Persévérance · Créativité · Adaptabilité</td>
+              <td>Mise en place de compte rendu et Gantt · Conception d'un système de refroidissement · Synchronisation de plusieurs cartes Arduino</td>
+            </tr>
+            <tr>
+              <td class="act-col">Stage Métrologie<br><small style="color:var(--text-light)">Becton Dickinson</small></td>
+              <td>Étalonnage d'instrument · Gestion des équipements de mesure</td>
+              <td>Analyse des données de mesure · Documentation et traçabilité</td>
+              <td>Attention aux détails · Esprit d'analyse · Communication · Respect des normes</td>
+              <td>Suivi de protocole d'étalonnage · Création de MOP · Utilisation de Blue Mountain</td>
+            </tr>
+            <tr>
+              <td class="act-col">Cadets de la gendarmerie<br><small style="color:var(--text-light)">Mission d'Intérêt Général</small></td>
+              <td>Règles de civisme · Missions de la gendarmerie · Sécurité publique</td>
+              <td>Application consignes de sécurité · Communication efficace · Mission de prévention</td>
+              <td>Sens du devoir · Respect de l'autorité · Esprit d'équipe · Solidarité</td>
+              <td>Parcours du combattant à Dijon · Prévention de vol à la roulotte dans une station de ski</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3 -->
+    <div class="val-panel" id="vtab2">
+      <div class="val-table-wrap">
+        <table class="val-table">
+          <thead><tr><th>Activité</th><th>Savoir</th><th>Savoir-faire</th><th>Savoir-être</th><th>Exemple</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="act-col">Stage technicien<br><small style="color:var(--text-light)">Optimisation bancs CAE</small></td>
+              <td>Normes GPS · Chaînes de côtes · Principes de métrologie</td>
+              <td>Utilisation de Creo et CETOL · Maîtrise d'analyse statistique (Excel, CETOL)</td>
+              <td>Rigueur · Esprit d'analyse · Résolution de problèmes · Curiosité · Précision</td>
+              <td>Fonctions correctives pour compenser les erreurs de positionnement · Application de formules améliorant la précision des mesures</td>
+            </tr>
+            <tr>
+              <td class="act-col">Contrat Pro<br><small style="color:var(--text-light)">Effort moteur Vigi</small></td>
+              <td>Mécanismes de déclenchement des disjoncteurs · Fiabilité produit</td>
+              <td>Simulation ANSYS Rigid Body · CAO Creo · Analyse de données expérimentales et exploitation statistique</td>
+              <td>Rigueur dans l'analyse · Curiosité technique · Esprit d'initiative (caméra Keyence + IA)</td>
+              <td>Modèle de simulation ANSYS pour identifier les pertes d'énergie · Étude de faisabilité mesure d'énergie cinétique via caméra</td>
+            </tr>
+            <tr>
+              <td class="act-col">Contrat Pro (projet parallèle)<br><small style="color:var(--text-light)">Logiciel LabEC</small></td>
+              <td>Protocoles d'acquisition NI-DAQmx · Capteurs effort/course · Besoins utilisateurs en environnement industriel</td>
+              <td>Application Python complète (Tkinter, Matplotlib, OpenPyXL) · Intégration matériel/logiciel · Traitement temps réel des signaux</td>
+              <td>Esprit d'initiative · Autonomie dans la gestion d'un projet logiciel de A à Z</td>
+              <td>Remplacement d'un système obsolète (Windows XP + clé USB) par un logiciel moderne · Export automatique vers Excel avec statistiques et graphiques</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FRESQUE DU BACHELOR ═══ -->
+  <section class="sec" id="fresque">
+    <div class="reveal">
+      <span class="sec-label">Mon parcours visuel</span>
+      <h2 class="sec-title">Fresque du Bachelor</h2>
+      <p class="sec-sub">Support visuel narratif de mon parcours de 2023 à 2026 — chaque image est un repère intentionnel représentant un projet, une compétence ou une étape clé. Cliquez pour agrandir.</p>
+    </div>
+
+    <div class="fresque-wrap reveal">
+      <div class="fresque-img-container" onclick="openLightbox()">
+        <img src="images/fresque.jpg" alt="Fresque du Bachelor de Technologie Arts et Métiers — Arsène Kuhlich">
+        <span class="fresque-zoom-hint">🔍 Cliquer pour agrandir</span>
+      </div>
+
+      <div style="margin-top:1.2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+        <a href="pdf/fresque.pdf" target="_blank" class="pdf-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fresque complète (PDF)</a>
+        <a href="pdf/fresque-description.pdf" target="_blank" class="pdf-btn" style="background:var(--gold);color:var(--purple-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Description de la fresque (PDF)</a>
+        <a href="pdf/plaquette-competences.pdf" target="_blank" class="pdf-btn" style="background:#5a8f6a;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Plaquette & Fiches compétences (PDF)</a>
+      </div>
+
+      <div class="fresque-phases reveal">
+        <div class="phase">
+          <div class="phase-bar" style="background:var(--y1)"></div>
+          <h4>2023–2024 · Fondations</h4>
+          <p>Acquisition des bases académiques (mathématiques, mécanique, EEA, conception), première immersion industrielle chez Becton Dickinson, lancement du projet MERI, créativité avec le Poème IA, et mobilité internationale chez Freudenberg en Allemagne.</p>
+          <div class="phase-tags">
+            <span class="phase-tag" style="color:var(--y1);border-color:var(--y1)">Maths</span>
+            <span class="phase-tag" style="color:var(--y1);border-color:var(--y1)">Mécanique</span>
+            <span class="phase-tag" style="color:var(--y1);border-color:var(--y1)">Stage BD</span>
+            <span class="phase-tag" style="color:var(--y1);border-color:var(--y1)">MERI</span>
+            <span class="phase-tag" style="color:var(--y1);border-color:var(--y1)">Freudenberg</span>
+            <span class="phase-tag" style="color:var(--y1);border-color:var(--y1)">Poème IA</span>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-bar" style="background:var(--y2)"></div>
+          <h4>2024–2025 · Montée en responsabilité</h4>
+          <p>Management d'équipe avec le robot quadrupède, projet Access, développement de l'aisance orale via le Pechakucha, organisation du voyage d'étude à Lisbonne, stage technicien chez Schneider Electric et obtention du TOEIC.</p>
+          <div class="phase-tags">
+            <span class="phase-tag" style="color:#D4870E;border-color:var(--y2)">Robot quadrupède</span>
+            <span class="phase-tag" style="color:#D4870E;border-color:var(--y2)">Pechakucha</span>
+            <span class="phase-tag" style="color:#D4870E;border-color:var(--y2)">Voyage Lisbonne</span>
+            <span class="phase-tag" style="color:#D4870E;border-color:var(--y2)">Stage Schneider</span>
+            <span class="phase-tag" style="color:#D4870E;border-color:var(--y2)">TOEIC</span>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-bar" style="background:var(--y3)"></div>
+          <h4>2025–2026 · Professionnalisation</h4>
+          <p>Contrat professionnel chez Schneider Electric (optimisation Vigi, ANSYS, Creo, CETOL), préparation du CQPM Chargé de projets industriels, et mission de tutorat auprès d'un étudiant en situation de handicap — maturité humaine et professionnelle.</p>
+          <div class="phase-tags">
+            <span class="phase-tag" style="color:#3A9E3F;border-color:var(--y3)">Contrat Pro</span>
+            <span class="phase-tag" style="color:#3A9E3F;border-color:var(--y3)">ANSYS</span>
+            <span class="phase-tag" style="color:#3A9E3F;border-color:var(--y3)">Creo</span>
+            <span class="phase-tag" style="color:#3A9E3F;border-color:var(--y3)">CQPM</span>
+            <span class="phase-tag" style="color:#3A9E3F;border-color:var(--y3)">Tutorat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPÉTENCES ═══ -->
+  <section class="sec" id="competences">
+    <div class="reveal">
+      <span class="sec-label">Savoir-faire</span>
+      <h2 class="sec-title">Compétences techniques</h2>
+    </div>
+    <div class="skills-group reveal">
+      <div class="skills-group-label">CAO / Simulation</div>
+      <div class="pills"><span class="pill hl">Creo (PTC)</span><span class="pill hl">Catia V5</span><span class="pill hl">ANSYS Rigid Body</span><span class="pill">CETOL</span><span class="pill">Modélisation 3D</span><span class="pill">G-code</span></div>
+    </div>
+    <div class="skills-group reveal">
+      <div class="skills-group-label">Programmation & Logiciel</div>
+      <div class="pills"><span class="pill hl">Python (Tkinter, Matplotlib, OpenPyXL)</span><span class="pill">C++ / Arduino</span><span class="pill">NI-DAQmx</span><span class="pill">Access / Base de données</span><span class="pill">Pack Office</span><span class="pill">Jama Connect</span></div>
+    </div>
+    <div class="skills-group reveal">
+      <div class="skills-group-label">Méthodes & Industrie</div>
+      <div class="pills"><span class="pill">Métrologie / Étalonnage</span><span class="pill">Normes GPS</span><span class="pill">Gestion de projet (Gantt)</span><span class="pill">Soudage</span><span class="pill">Impression 3D</span><span class="pill">Traitement d'image / IA</span></div>
+    </div>
+    <div class="skills-group reveal">
+      <div class="skills-group-label">Communication</div>
+      <div class="pills"><span class="pill hl">Projet Voltaire</span><span class="pill">Prise de parole (Pechakucha)</span><span class="pill">Rédaction technique</span></div>
+    </div>
+    <div class="skills-group reveal">
+      <div class="skills-group-label">Langues</div>
+      <div class="pills"><span class="pill hl">Français — Natif</span><span class="pill">Anglais — TOEIC</span><span class="pill">Allemand — Intermédiaire</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ RECOMMANDATIONS ═══ -->
+  <section class="sec" id="recommandations">
+    <div class="reveal">
+      <span class="sec-label">Ils me recommandent</span>
+      <h2 class="sec-title">Lettres de recommandation</h2>
+    </div>
+    <div class="reco-grid">
+      <div class="reco reveal">
+        <div class="reco-q">&ldquo;</div>
+        <p class="reco-txt">Arsène s'est rapidement distingué par son sérieux, sa rigueur et sa capacité d'apprentissage. Il possède toutes les qualités d'un futur ingénieur : compétence, curiosité, implication, sens du collectif.</p>
+        <div class="reco-who">Thomas Pupin</div>
+        <div class="reco-role">FD League Technical Leader — Schneider Electric</div>
+        <a href="pdf/lettre-schneider.pdf" target="_blank" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
+      </div>
+      <div class="reco reveal reveal-d1">
+        <div class="reco-q">&ldquo;</div>
+        <p class="reco-txt">Mr. Kuhlich was an exceptional intern in every respect. His excellent ability to familiarise himself rapidly must be mentioned in particular. His way of working was consistently excellent.</p>
+        <div class="reco-who">Olena Cherneyko & Christel Böser</div>
+        <div class="reco-role">Manager HR & Senior Manager HR — Freudenberg</div>
+        <a href="pdf/lettre-freudenberg.pdf" target="_blank" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
+      </div>
+      <div class="reco reveal reveal-d2">
+        <div class="reco-q">&ldquo;</div>
+        <p class="reco-txt">Il est certainement l'élève qui a le plus progressé. Empathique, soucieux des autres, il a joué un rôle important et fédérateur dans sa promotion. Il est devenu une personne ressource.</p>
+        <div class="reco-who">Carine Vignes</div>
+        <div class="reco-role">Professeure Agrégée de Lettres Modernes — ENSAM Bordeaux</div>
+        <a href="pdf/lettre-ensam.pdf" target="_blank" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <span class="sec-label">Intéressé ?</span>
+      <h2 class="sec-title" style="margin-top:.5rem">Me contacter</h2>
+      <p class="sec-sub" style="margin:1rem auto 0;text-align:center">Recherche une formation d'ingénieur en alternance mécanique / mécatronique soutenue par Schneider Electric — Sept. 2026 à sept. 2029</p>
+      <div class="contact-links">
+        <a href="mailto:arsene.kuhlich@ensam.eu" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>arsene.kuhlich@ensam.eu</a>
+        <a href="tel:+33603199553" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>06 03 19 95 53</a>
+        <a href="pdf/portfolio-complet.pdf" target="_blank" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Portfolio complet (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Arsène Kuhlich · Portfolio de recrutement · Bachelor de Technologie Arts et Métiers · Bordeaux · 2026</footer>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img src="images/fresque.jpg" alt="Fresque du Bachelor">
+</div>
+
+<script>
+function showTab(n){
+  document.querySelectorAll('.val-panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+  document.querySelectorAll('.val-tab-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+}
+function toggle(c){
+  const was=c.classList.contains('open');
+  document.querySelectorAll('.card.open').forEach(x=>x.classList.remove('open'));
+  if(!was){c.classList.add('open');setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'nearest'}),120)}
+}
+function openLightbox(){document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+const navs=document.querySelectorAll('.nav-link');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('[id]').forEach(s=>{if(scrollY>=s.offsetTop-140)cur=s.id});
+  navs.forEach(n=>n.classList.toggle('active',n.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
