@@ -93,6 +93,12 @@ img{max-width:100%;display:block}
 /* ═══ DETAIL ═══ */
 .card-detail{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);background:var(--bg-warm);border-top:1px solid transparent}
 .card.open .card-detail{max-height:3000px;border-top-color:var(--border)}
+.timeline-item .card-detail{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);background:var(--bg-warm);border-top:1px solid transparent}
+.timeline-item.open .card-detail{max-height:3000px;border-top-color:var(--border)}
+.timeline-toggle{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;margin-top:1rem;background:var(--bg-warm);font-size:.8rem;font-weight:700;color:var(--purple);border-radius:100px;border:none;cursor:pointer;transition:background .3s}
+.timeline-item.open .timeline-toggle{background:var(--gold-pale)}
+.timeline-toggle svg{width:14px;height:14px;transition:transform .3s}
+.timeline-item.open .timeline-toggle svg{transform:rotate(180deg)}
 .card-detail-inner{padding:1.6rem}
 .d-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:.4rem}
 .d-text{font-size:.88rem;color:var(--text);line-height:1.75;margin-bottom:1.2rem}
@@ -286,6 +292,15 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
           <h4>Bachelor de Technologie</h4>
           <div class="dates">2023–2026</div>
           <p>ENSAM Bordeaux — Spécialisation en mécanique et technologies industrielles.</p>
+          <button class="timeline-toggle" onclick="toggle(this.closest('.timeline-item'))" aria-expanded="false">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="card-detail">
+            <div class="card-detail-inner">
+              <div class="d-label">Bachelor Sciences et Ingénierie</div>
+              <div class="d-text">Formation pluridisciplinaire en sciences, mécanique, matériaux, systèmes industriels et numérique. Le programme associe enseignements théoriques, projets concrets, ateliers laboratoire et stages pour construire une base solide en ingénierie.</div>
+              <div class="d-label">Ce que j'y ai développé</div>
+              <div class="d-text">Capacité à concevoir et simuler des solutions techniques, culture projet, travail en équipe et maîtrise des outils de production industrielle. Approche progressive vers l'innovation, la qualité et la performance.</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="timeline-item reveal reveal-d2">
@@ -297,6 +312,15 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
           <h4>Ingénieur de Spécialité Mécanique et Mécatronique</h4>
           <div class="dates">2026–2029</div>
           <p>Formation d'ingénieur en alternance avec l'Institut Supérieur de l'Industrie Textile de Paris (ISTP) et Arts et Métiers Cluny.</p>
+          <button class="timeline-toggle" onclick="toggle(this.closest('.timeline-item'))" aria-expanded="false">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="card-detail">
+            <div class="card-detail-inner">
+              <div class="d-label">Ingénieur Mécanique et Mécatronique</div>
+              <div class="d-text">Parcours apprentissage centré sur l'intégration de systèmes mécaniques, électroniques et logiciels. Le cursus couvre la conception produit, l'automatisation, les capteurs/actuateurs, le prototypage et la maintenance prédictive.</div>
+              <div class="d-label">Ce que j'y prépare</div>
+              <div class="d-text">Compétences de niveau ingénieur pour développer des solutions industrielles innovantes, allier mécanique et électronique, travailler en alternance et piloter des projets en entreprise avec une vision système.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -743,8 +767,9 @@ function showTab(n){
 }
 function toggle(c){
   const was=c.classList.contains('open');
-  document.querySelectorAll('.card.open').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.card.open, .timeline-item.open').forEach(x=>x.classList.remove('open'));
   if(!was){c.classList.add('open');setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'nearest'}),120)}
+  document.querySelectorAll('.timeline-toggle').forEach(btn=>btn.setAttribute('aria-expanded', btn.closest('.timeline-item').classList.contains('open')));
 }
 function openLightbox(){document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
