@@ -138,8 +138,15 @@ img{max-width:100%;display:block}
 .pill:hover{border-color:var(--purple-mid);color:var(--purple);background:rgba(107,29,94,.03)}
 .pill.hl{background:var(--gold-pale);border-color:var(--gold);color:var(--purple);font-weight:700}
 
-/* ═══ RECOMMANDATIONS ═══ */
-.reco-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;margin-top:2.5rem}
+/* ═══ FORMATIONS ═══ */
+.formations-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
+.formation{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all .3s var(--ease);text-align:center}
+.formation:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.formation-logo{width:80px;height:80px;margin:0 auto 1rem;border-radius:50%;overflow:hidden;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff}
+.formation-logo img{width:100%;height:100%;object-fit:contain}
+.formation h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--purple-dark);font-weight:600;margin-bottom:.5rem}
+.formation .dates{font-size:.82rem;color:var(--gold);font-weight:700;margin-bottom:.8rem}
+.formation p{font-size:.88rem;color:var(--text-mid);line-height:1.6}
 .reco{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all .3s var(--ease)}
 .reco:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
 .reco-q{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);line-height:1;margin-bottom:.8rem}
@@ -205,13 +212,12 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-school">Arts et Métiers · Bachelor de Technologie · Bordeaux</div>
+    <div class="hero-school">Arts et Métiers · Mines Saint-Étienne · ISTP Cluny</div>
     <h1>Arsène <em>Kuhlich</em></h1>
-     <p class="hero-intro">Étudiant en troisième année de <strong style="color:#fff">Bachelor de Technologie à l'ENSAM</strong>, en contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>. Je recherche une alternance ingénieur mécanique / mécatronique à partir de septembre 2026.</p>
+     <p class="hero-intro">Admis en <strong style="color:#fff">formation d'ingénieur en alternance mécanique et mécatronique</strong> aux Mines Saint-Étienne et Arts et Métiers Cluny (ISTP). En contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>.</p>
       <div class="hero-row">
         <img src="images/profile.jpg" alt="Portrait d'Arsène Kuhlich" class="hero-photo">
-        <a href="#missions" class="btn-gold">Découvrir mes missions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
-        <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV mis à jour">Voir mon CV</a>
+        <a href="#formations" class="btn-gold">Mon Parcours <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
         <a href="#contact" class="btn-outline">Me contacter</a>
       </div>
     </div>
@@ -221,6 +227,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
 <!-- ═══ NAV ═══ -->
 <nav class="nav" aria-label="Navigation principale">
   <div class="nav-inner">
+    <a href="#formations" class="nav-link">Formations</a>
     <a href="#missions" class="nav-link active">Missions</a>
     <a href="#valorisation" class="nav-link">Valorisation</a>
     <a href="#fresque" class="nav-link">Fresque</a>
@@ -236,13 +243,48 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   <div class="cv-banner reveal">
     <div>
       <h3>Arsène Kuhlich</h3>
-      <p>20 ans · ENSAM Bordeaux · Contrat Pro Schneider Electric · Alternance ingénieur mécanique/mécatronique recherchée dès sept. 2026</p>
+      <p>21 ans · Mines Saint-Étienne / Arts et Métiers Cluny (ISTP) · Contrat Pro Schneider Electric · Formation ingénieur mécanique/mécatronique en alternance 2026–2029</p>
     </div>
     <div style="display:flex;gap:.8rem;flex-wrap:wrap">
       <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV mis à jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>CV mis à jour</a>
       <a href="pdf/presentation-personnelle.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" style="background:var(--gold);color:var(--purple-dark)" aria-label="Ouvrir ma présentation personnelle en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>Présentation personnelle</a>
     </div>
   </div>
+
+  <!-- ═══ FORMATIONS ═══ -->
+  <section class="sec" id="formations">
+    <div class="reveal">
+      <span class="sec-label">Mon Parcours</span>
+      <h2 class="sec-title">Formations</h2>
+      <p class="sec-sub">Mon parcours académique de l'enseignement secondaire à l'ingénierie en alternance.</p>
+    </div>
+    <div class="formations-grid">
+      <div class="formation reveal">
+        <div class="formation-logo">
+          <img src="https://www.mines-stetienne.fr/wp-content/uploads/2020/09/logo-mines-stetienne.png" alt="Logo Mines Saint-Étienne">
+        </div>
+        <h4>Ingénieur de Spécialité Mécanique et Mécatronique</h4>
+        <div class="dates">2026–2029</div>
+        <p>Formation d'ingénieur en alternance avec l'Institut Supérieur de l'Industrie Textile de Paris (ISTP) et Arts et Métiers Cluny.</p>
+      </div>
+      <div class="formation reveal reveal-d1">
+        <div class="formation-logo">
+          <img src="https://www.ensam.eu/wp-content/uploads/2020/09/logo-ensam.png" alt="Logo Arts et Métiers">
+        </div>
+        <h4>Bachelor de Technologie</h4>
+        <div class="dates">2023–2026</div>
+        <p>ENSAM Bordeaux — Spécialisation en mécanique et technologies industrielles.</p>
+      </div>
+      <div class="formation reveal reveal-d2">
+        <div class="formation-logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Logo_STI2D.png" alt="Logo STI2D">
+        </div>
+        <h4>Baccalauréat Technologique STI2D</h4>
+        <div class="dates">2021–2023</div>
+        <p>Mention AB — Systèmes et Équipements Numériques.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ MISSIONS ═══ -->
   <section class="sec" id="missions">
