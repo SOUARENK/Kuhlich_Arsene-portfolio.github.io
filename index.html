@@ -152,6 +152,8 @@ img{max-width:100%;display:block}
 .timeline-content:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
 .timeline-logo{width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff;flex-shrink:0}
 .timeline-logo img{width:100%;height:100%;object-fit:contain}
+.timeline-logo-group{display:flex;align-items:center;gap:.75rem}
+.timeline-logo-group .timeline-logo{width:58px;height:58px}
 .timeline h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--purple-dark);font-weight:600;margin-bottom:.3rem}
 .timeline .dates{font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:.8rem}
 .timeline p{font-size:.88rem;color:var(--text-mid);line-height:1.6}
@@ -225,9 +227,9 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-school">Arts et Métiers · Mines Saint-Étienne · ISTP Cluny</div>
+    <div class="hero-school">ENSAM Cluny · Mines Saint-Étienne · ISTP</div>
     <h1>Arsène <em>Kuhlich</em></h1>
-     <p class="hero-intro">Admis en <strong style="color:#fff">formation d'ingénieur en alternance mécanique et mécatronique</strong> aux Mines Saint-Étienne et Arts et Métiers Cluny (ISTP). En contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>.</p>
+     <p class="hero-intro">Admis en <strong style="color:#fff">formation d'ingénieur en alternance mécanique et mécatronique</strong> aux Mines Saint-Étienne et ENSAM Cluny (ISTP). En contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>.</p>
       <div class="hero-row">
         <img src="images/profile.jpg" alt="Portrait d'Arsène Kuhlich" class="hero-photo">
         <a href="#formations" class="btn-gold">Mon Parcours <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
@@ -256,7 +258,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   <div class="cv-banner reveal">
     <div>
       <h3>Arsène Kuhlich</h3>
-      <p>21 ans · Mines Saint-Étienne / Arts et Métiers Cluny (ISTP) · Contrat Pro Schneider Electric · Formation ingénieur mécanique/mécatronique en alternance 2026–2029</p>
+      <p>21 ans · Mines Saint-Étienne / ENSAM Cluny (ISTP) · Contrat Pro Schneider Electric · Formation ingénieur mécanique/mécatronique en alternance 2026–2029</p>
     </div>
     <div style="display:flex;gap:.8rem;flex-wrap:wrap">
       <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>CV</a>
@@ -305,13 +307,14 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       </div>
       <div class="timeline-item reveal reveal-d2">
         <div class="timeline-dot"></div>
-        <div class="timeline-logo">
-          <img src="images/logo-mines-saint-etienne.png" alt="Logo Mines Saint-Étienne">
+        <div class="timeline-logo-group">
+          <div class="timeline-logo"><img src="images/logo-mines-saint-etienne.png" alt="Logo Mines Saint-Étienne"></div>
+          <div class="timeline-logo"><img src="images/logo-arts-metiers.png" alt="Logo ENSAM Cluny"></div>
         </div>
         <div class="timeline-content">
           <h4>Ingénieur de Spécialité Mécanique et Mécatronique</h4>
           <div class="dates">2026–2029</div>
-          <p>Formation d'ingénieur en alternance avec l'Institut Supérieur de l'Industrie Textile de Paris (ISTP) et Arts et Métiers Cluny.</p>
+          <p>Formation d'ingénieur en alternance avec l'Institut Supérieur des Techniques de la Performance (ISTP) et ENSAM Cluny.</p>
           <button class="timeline-toggle" onclick="toggle(this.closest('.timeline-item'))" aria-expanded="false">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
           <div class="card-detail">
             <div class="card-detail-inner">
