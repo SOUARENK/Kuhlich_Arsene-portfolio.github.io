@@ -139,14 +139,19 @@ img{max-width:100%;display:block}
 .pill.hl{background:var(--gold-pale);border-color:var(--gold);color:var(--purple);font-weight:700}
 
 /* ═══ FORMATIONS ═══ */
-.formations-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2.5rem}
-.formation{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all .3s var(--ease);text-align:center}
-.formation:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
-.formation-logo{width:80px;height:80px;margin:0 auto 1rem;border-radius:50%;overflow:hidden;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff}
-.formation-logo img{width:100%;height:100%;object-fit:contain}
-.formation h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--purple-dark);font-weight:600;margin-bottom:.5rem}
-.formation .dates{font-size:.82rem;color:var(--gold);font-weight:700;margin-bottom:.8rem}
-.formation p{font-size:.88rem;color:var(--text-mid);line-height:1.6}
+.timeline{position:relative;max-width:800px;margin:0 auto;padding:2rem 0}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--gold);transform:translateX(-50%)}
+.timeline-item{position:relative;margin-bottom:3rem;padding-left:60%;clear:both}
+.timeline-item:nth-child(even){padding-left:0;padding-right:60%}
+.timeline-item:nth-child(even) .timeline-content{text-align:right}
+.timeline-content{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:all .3s var(--ease)}
+.timeline-content:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.timeline-logo{width:60px;height:60px;border-radius:50%;overflow:hidden;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff;margin-bottom:1rem}
+.timeline-logo img{width:100%;height:100%;object-fit:contain}
+.timeline h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--purple-dark);font-weight:600;margin-bottom:.3rem}
+.timeline .dates{font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:.8rem}
+.timeline p{font-size:.88rem;color:var(--text-mid);line-height:1.6}
+.timeline-dot{position:absolute;top:1.5rem;width:20px;height:20px;background:var(--gold);border-radius:50%;border:3px solid #fff;left:50%;transform:translateX(-50%);z-index:1}
 .reco{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:all .3s var(--ease)}
 .reco:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
 .reco-q{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);line-height:1;margin-bottom:.8rem}
@@ -191,6 +196,10 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   .d-grid{grid-template-columns:1fr}
   .hero{min-height:90vh}
   .hero-content{padding:2rem 1.5rem 3rem}
+  .timeline::before{display:none}
+  .timeline-item{padding-left:0;padding-right:0;margin-bottom:2rem}
+  .timeline-item .timeline-content{text-align:left}
+  .timeline-dot{left:20px}
 }
 
 @media(max-width:520px){
@@ -246,7 +255,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <p>21 ans · Mines Saint-Étienne / Arts et Métiers Cluny (ISTP) · Contrat Pro Schneider Electric · Formation ingénieur mécanique/mécatronique en alternance 2026–2029</p>
     </div>
     <div style="display:flex;gap:.8rem;flex-wrap:wrap">
-      <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV mis à jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>CV mis à jour</a>
+      <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>CV</a>
       <a href="pdf/presentation-personnelle.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" style="background:var(--gold);color:var(--purple-dark)" aria-label="Ouvrir ma présentation personnelle en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>Présentation personnelle</a>
     </div>
   </div>
@@ -258,30 +267,39 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <h2 class="sec-title">Formations</h2>
       <p class="sec-sub">Mon parcours académique de l'enseignement secondaire à l'ingénierie en alternance.</p>
     </div>
-    <div class="formations-grid">
-      <div class="formation reveal">
-        <div class="formation-logo">
-          <img src="https://www.mines-stetienne.fr/wp-content/uploads/2020/09/logo-mines-stetienne.png" alt="Logo Mines Saint-Étienne">
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-logo">
+            <img src="images/Logo Mines Saint-Etienne.png" alt="Logo Mines Saint-Étienne">
+          </div>
+          <h4>Ingénieur de Spécialité Mécanique et Mécatronique</h4>
+          <div class="dates">2026–2029</div>
+          <p>Formation d'ingénieur en alternance avec l'Institut Supérieur de l'Industrie Textile de Paris (ISTP) et Arts et Métiers Cluny.</p>
         </div>
-        <h4>Ingénieur de Spécialité Mécanique et Mécatronique</h4>
-        <div class="dates">2026–2029</div>
-        <p>Formation d'ingénieur en alternance avec l'Institut Supérieur de l'Industrie Textile de Paris (ISTP) et Arts et Métiers Cluny.</p>
       </div>
-      <div class="formation reveal reveal-d1">
-        <div class="formation-logo">
-          <img src="https://www.ensam.eu/wp-content/uploads/2020/09/logo-ensam.png" alt="Logo Arts et Métiers">
+      <div class="timeline-item reveal reveal-d1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-logo">
+            <img src="images/Logo Arts et Métiers.png" alt="Logo Arts et Métiers">
+          </div>
+          <h4>Bachelor de Technologie</h4>
+          <div class="dates">2023–2026</div>
+          <p>ENSAM Bordeaux — Spécialisation en mécanique et technologies industrielles.</p>
         </div>
-        <h4>Bachelor de Technologie</h4>
-        <div class="dates">2023–2026</div>
-        <p>ENSAM Bordeaux — Spécialisation en mécanique et technologies industrielles.</p>
       </div>
-      <div class="formation reveal reveal-d2">
-        <div class="formation-logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Logo_STI2D.png" alt="Logo STI2D">
+      <div class="timeline-item reveal reveal-d2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-logo">
+            <img src="images/Logo STI2D.png" alt="Logo STI2D">
+          </div>
+          <h4>Baccalauréat Technologique STI2D</h4>
+          <div class="dates">2021–2023</div>
+          <p>Mention AB — Spécialité ITEC.</p>
         </div>
-        <h4>Baccalauréat Technologique STI2D</h4>
-        <div class="dates">2021–2023</div>
-        <p>Mention AB — Systèmes et Équipements Numériques.</p>
       </div>
     </div>
   </section>
