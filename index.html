@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arsène Kuhlich — Portfolio Interactif</title>
+<title>Arsène Kuhlich — Portfolio Ingénieur Mécanique & Mécatronique</title>
+<meta name="description" content="Portfolio d'Arsène Kuhlich, étudiant ingénieur en alternance chez Schneider Electric, expert en mécanique, simulation et optimisation industrielle.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -184,6 +185,17 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   .hero{min-height:90vh}
   .hero-content{padding:2rem 1.5rem 3rem}
 }
+
+@media(max-width:520px){
+  .hero h1{font-size:clamp(2.5rem,10vw,4rem)}
+  .hero-intro{font-size:1rem}
+  .hero-row{flex-direction:column;align-items:stretch}
+  .btn-gold,.btn-outline{width:100%;justify-content:center}
+  .nav-inner{padding:.6rem 1rem}
+  .hero-school{font-size:.75rem;padding:6px 14px}
+  .contact-links{flex-direction:column;align-items:center}
+  .contact-link{width:100%;max-width:420px;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -195,16 +207,19 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   <div class="hero-content">
     <div class="hero-school">Arts et Métiers · Bachelor de Technologie · Bordeaux</div>
     <h1>Arsène <em>Kuhlich</em></h1>
-     <p class="hero-intro">Étudiant en troisème anneé de <strong style="color:#fff">Bachelor de Technologie de l'ENSAM</strong>, en contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>. Passionné par l'innovation industrielle, la simulation et le développement de solutions techniques concrètes.</p>
-      <img src="images/profile.jpg" alt="Arsène Kuhlich" class="hero-photo">
-      <a href="#missions" class="btn-gold">Découvrir mes missions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
-      <a href="#contact" class="btn-outline">Me contacter</a>
+     <p class="hero-intro">Étudiant en troisième année de <strong style="color:#fff">Bachelor de Technologie à l'ENSAM</strong>, en contrat professionnel chez <strong style="color:#fff">Schneider Electric</strong>. Je recherche une alternance ingénieur mécanique / mécatronique à partir de septembre 2026.</p>
+      <div class="hero-row">
+        <img src="images/profile.jpg" alt="Portrait d'Arsène Kuhlich" class="hero-photo">
+        <a href="#missions" class="btn-gold">Découvrir mes missions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV mis à jour">Voir mon CV</a>
+        <a href="#contact" class="btn-outline">Me contacter</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ NAV ═══ -->
-<nav class="nav">
+<nav class="nav" aria-label="Navigation principale">
   <div class="nav-inner">
     <a href="#missions" class="nav-link active">Missions</a>
     <a href="#valorisation" class="nav-link">Valorisation</a>
@@ -215,17 +230,17 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   </div>
 </nav>
 
-<div class="wrap">
+<main class="wrap">
 
   <!-- ═══ CV ═══ -->
   <div class="cv-banner reveal">
     <div>
       <h3>Arsène Kuhlich</h3>
-      <p>20 ans · ENSAM Bordeaux · Contrat Pro Schneider Electric · Recherche alternance ingénieur sept. 2026 – sept. 2029</p>
+      <p>20 ans · ENSAM Bordeaux · Contrat Pro Schneider Electric · Alternance ingénieur mécanique/mécatronique recherchée dès sept. 2026</p>
     </div>
     <div style="display:flex;gap:.8rem;flex-wrap:wrap">
-      <a href="pdf/cv.pdf" target="_blank" class="btn-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Curriculum Vitae</a>
-      <a href="pdf/presentation-personnelle.pdf" target="_blank" class="btn-purple" style="background:var(--gold);color:var(--purple-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>Présentation personnelle</a>
+      <a href="pdf/cv.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" aria-label="Télécharger le CV mis à jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>CV mis à jour</a>
+      <a href="pdf/presentation-personnelle.pdf" target="_blank" rel="noopener noreferrer" class="btn-purple" style="background:var(--gold);color:var(--purple-dark)" aria-label="Ouvrir ma présentation personnelle en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>Présentation personnelle</a>
     </div>
   </div>
 
@@ -620,21 +635,21 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
         <p class="reco-txt">Arsène s'est rapidement distingué par son sérieux, sa rigueur et sa capacité d'apprentissage. Il possède toutes les qualités d'un futur ingénieur : compétence, curiosité, implication, sens du collectif.</p>
         <div class="reco-who">Thomas Pupin</div>
         <div class="reco-role">FD League Technical Leader — Schneider Electric</div>
-        <a href="pdf/lettre-schneider.pdf" target="_blank" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
+        <a href="pdf/lettre-schneider.pdf" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la lettre de recommandation Schneider Electric" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
       </div>
       <div class="reco reveal reveal-d1">
         <div class="reco-q">&ldquo;</div>
         <p class="reco-txt">Mr. Kuhlich was an exceptional intern in every respect. His excellent ability to familiarise himself rapidly must be mentioned in particular. His way of working was consistently excellent.</p>
         <div class="reco-who">Olena Cherneyko & Christel Böser</div>
         <div class="reco-role">Manager HR & Senior Manager HR — Freudenberg</div>
-        <a href="pdf/lettre-freudenberg.pdf" target="_blank" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
+        <a href="pdf/lettre-freudenberg.pdf" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la lettre de recommandation Freudenberg" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
       </div>
       <div class="reco reveal reveal-d2">
         <div class="reco-q">&ldquo;</div>
         <p class="reco-txt">Il est certainement l'élève qui a le plus progressé. Empathique, soucieux des autres, il a joué un rôle important et fédérateur dans sa promotion. Il est devenu une personne ressource.</p>
         <div class="reco-who">Carine Vignes</div>
         <div class="reco-role">Professeure Agrégée de Lettres Modernes — ENSAM Bordeaux</div>
-        <a href="pdf/lettre-ensam.pdf" target="_blank" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
+        <a href="pdf/lettre-ensam.pdf" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la lettre de recommandation ENSAM" class="pdf-btn" style="margin-top:1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Lettre complète</a>
       </div>
     </div>
   </section>
@@ -646,14 +661,14 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <h2 class="sec-title" style="margin-top:.5rem">Me contacter</h2>
       <p class="sec-sub" style="margin:1rem auto 0;text-align:center">Recherche une formation d'ingénieur en alternance mécanique / mécatronique soutenue par Schneider Electric — Sept. 2026 à sept. 2029</p>
       <div class="contact-links">
-        <a href="mailto:arsene.kuhlich@ensam.eu" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>arsene.kuhlich@ensam.eu</a>
-        <a href="tel:+33603199553" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>06 03 19 95 53</a>
-        <a href="pdf/portfolio-complet.pdf" target="_blank" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Portfolio complet (PDF)</a>
+        <a href="mailto:arsene.kuhlich@ensam.eu" class="contact-link" aria-label="Envoyer un email à Arsène Kuhlich"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>arsene.kuhlich@ensam.eu</a>
+        <a href="tel:+33603199553" class="contact-link" aria-label="Appeler Arsène Kuhlich"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>06 03 19 95 53</a>
+        <a href="pdf/portfolio-complet.pdf" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir le portfolio complet en PDF" class="contact-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Portfolio complet (PDF)</a>
       </div>
     </div>
   </section>
 
-</div>
+</main>
 
 <footer>Arsène Kuhlich · Portfolio de recrutement · Bachelor de Technologie Arts et Métiers · Bordeaux · 2026</footer>
 
