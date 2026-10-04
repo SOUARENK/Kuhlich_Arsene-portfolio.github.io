@@ -962,7 +962,7 @@ window.addEventListener('scroll',()=>{
 function openVideo(){
   var m=document.getElementById('vmodal'),v=m.querySelector('video');
   var vert=window.matchMedia('(max-width:700px) and (orientation:portrait)').matches;
-  var src=vert?'video/assistance-a-la-vente-vertical.mp4?v=3':'video/assistance-a-la-vente.mp4?v=3';
+  var src=vert?'video/assistance-a-la-vente-vertical.mp4?v=4':'video/assistance-a-la-vente.mp4?v=4';
   if(v.getAttribute('src')!==src){v.setAttribute('poster',vert?'images/assistance-vente-video-poster-vertical.jpg':'images/assistance-vente-video-poster.jpg');v.setAttribute('src',src);v.load();}
   m.classList.add('active'); document.body.style.overflow='hidden';
   var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
