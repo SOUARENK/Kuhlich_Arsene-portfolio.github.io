@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#3D1135">
 <title>Arsène Kuhlich — Portfolio Ingénieur Mécanique & Mécatronique</title>
 <meta name="description" content="Portfolio d'Arsène Kuhlich, futur ingénieur en alternance mécanique et mécatronique chez Schneider Electric (ISTP · Mines Saint-Étienne · ENSAM Cluny), spécialisé en simulation et optimisation industrielle.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -218,6 +219,100 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   .contact-links{flex-direction:column;align-items:center}
   .contact-link{width:100%;max-width:420px;justify-content:center}
 }
+
+/* ═══════════ Ergonomie : fluidité, vidéo, mobile ═══════════ */
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+.bnav,.dots{display:none}
+.acc-teaser,.acc-chev{display:none}
+
+/* lecture de la vidéo */
+.play-cover{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;background:rgba(30,10,26,.18);border:0;cursor:pointer;padding:0}
+.play-cover .pc{display:inline-flex;align-items:center;gap:10px;padding:8px 20px 8px 8px;border-radius:100px;background:rgba(255,255,255,.96);color:var(--purple-dark);font:700 .88rem 'Manrope',sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .25s var(--ease)}
+.play-cover .pc svg{width:40px;height:40px;padding:11px;border-radius:50%;background:var(--purple);color:#fff;flex-shrink:0}
+.play-cover:hover .pc{transform:scale(1.05)}
+.vmodal{display:none;position:fixed;inset:0;z-index:1100;background:rgba(12,5,11,.95);align-items:center;justify-content:center;padding:1rem}
+.vmodal.active{display:flex}
+.vmodal video{width:100%;max-width:1100px;max-height:82vh;border-radius:12px;background:#000;outline:0}
+.vmodal-close{position:absolute;top:max(.8rem,env(safe-area-inset-top));right:.8rem;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer}
+.pdf-btn{min-height:42px}
+
+@media(hover:none){.card:hover,.timeline-content:hover,.reco:hover,.phase:hover,.fresque-img-container:hover{transform:none;box-shadow:var(--shadow-sm)}}
+
+/* ═══ TÉLÉPHONE ═══ */
+@media(max-width:900px){
+  body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+  .nav{display:none}
+  .wrap{padding:0 1rem}
+  .hide-m{display:none}
+  .hero{min-height:0}
+  .hero-content{padding:2.6rem 1.1rem 1.8rem}
+  .hero-school{font-size:.66rem;letter-spacing:1.2px;padding:6px 12px;margin-bottom:1rem}
+  .hero h1{font-size:clamp(2.4rem,12vw,3.4rem);margin-bottom:.7rem}
+  .hero-intro{font-size:.95rem;line-height:1.6;margin-bottom:1.2rem}
+  .hero-row{display:grid;grid-template-columns:auto 1fr 1fr;gap:.6rem;align-items:center}
+  .hero-photo{width:48px;height:48px}
+  .btn-gold,.btn-outline{display:inline-flex;align-items:center;width:auto;padding:0 .6rem;min-height:48px;justify-content:center;text-align:center;font-size:.86rem}
+  .cv-banner{margin:1rem 0 0;padding:1rem;gap:.8rem;flex-direction:column;text-align:center}
+  .cv-banner h3{font-size:1.3rem}
+  .cv-banner p{font-size:.8rem}
+  .cv-banner > div:last-child{width:100%;display:grid!important;grid-template-columns:1fr 1fr;gap:.6rem!important}
+  .btn-purple{padding:0 .5rem;min-height:46px;justify-content:center;font-size:.8rem;text-align:center}
+  .sec{padding:1.8rem 0 .4rem}
+  .sec-title{font-size:1.7rem}
+  .sec-sub{font-size:.88rem}
+
+  /* carrousels */
+  #missions .grid,.reco-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.9rem;margin:1.1rem -1rem 0;padding:0 1rem .5rem;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:flex-start;overscroll-behavior-x:contain}
+  #missions .grid::-webkit-scrollbar,.reco-grid::-webkit-scrollbar{display:none}
+  #missions .card,.reco{flex:0 0 86%;scroll-snap-align:center;scroll-snap-stop:always}
+  #projet .grid{grid-template-columns:1fr!important;margin-top:1.1rem}
+  .card-img,#projet .card-img{height:150px!important}
+  .card-body{padding:1rem 1.1rem}
+  .card h3{font-size:1.12rem}
+  .card-excerpt{-webkit-line-clamp:4;font-size:.84rem}
+  .card-chips{margin-top:.7rem;padding-top:.7rem}
+  .card-toggle{min-height:46px}
+  .card-detail-inner{padding:1.1rem}
+  .dots{display:flex;justify-content:center;gap:7px;margin:.2rem 0 .6rem}
+  .dots i{width:7px;height:7px;border-radius:50%;background:#D6CEC7;transition:all .25s;cursor:pointer}
+  .dots i.on{width:22px;border-radius:6px;background:var(--purple)}
+  .reco{padding:1.3rem}
+
+  /* sections repliables */
+  .acc{border:1px solid var(--border);border-radius:var(--radius);background:var(--card);margin:.8rem 0;padding:0;box-shadow:var(--shadow-sm)}
+  .acc > .reveal{position:relative;padding:1rem 3.6rem 1rem 1.1rem;cursor:pointer;opacity:1!important;transform:none!important;-webkit-user-select:none;user-select:none}
+  .acc .sec-sub{display:none}
+  .acc .sec-label{margin-bottom:.15rem;font-size:.62rem}
+  .acc .sec-title{font-size:1.3rem}
+  .acc-teaser{display:block;font-size:.82rem;color:var(--text-mid);margin-top:.2rem;line-height:1.4}
+  .acc-chev{display:flex;position:absolute;right:.9rem;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--gold-pale);align-items:center;justify-content:center;transition:transform .3s var(--ease)}
+  .acc.open .acc-chev{transform:translateY(-50%) rotate(180deg)}
+  .sec-body{display:none;padding:0 1rem 1rem}
+  .acc.open .sec-body{display:block}
+  .acc .timeline{padding:.4rem 0}
+  .acc .val-tab-nav{margin-top:.4rem;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  .acc .val-tab-btn{white-space:nowrap}
+  .acc .fresque-wrap{margin-top:.4rem}
+  .acc .fresque-phases{gap:.8rem;margin-top:1rem}
+  .acc .phase{padding:1.1rem}
+
+  .contact{padding:2rem 0 1.5rem}
+  .contact-links{display:grid!important;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.2rem}
+  .contact-link{width:auto!important;max-width:none!important;min-height:48px;padding:0 .5rem;justify-content:center;font-size:.8rem;text-align:center}
+  footer{padding:1.2rem 1rem;font-size:.7rem}
+  .lightbox{padding:.6rem}
+
+  /* navigation du bas */
+  .bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;justify-content:space-around;gap:2px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-top:1px solid var(--border);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  .bnav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;border-radius:14px;color:var(--text-light);font-size:.66rem;font-weight:700;text-decoration:none;transition:all .25s var(--ease)}
+  .bnav a svg{width:22px;height:22px}
+  .bnav a.active{color:var(--purple);background:rgba(107,29,94,.08)}
+}
+@media(min-width:600px) and (max-width:900px){#missions .card,.reco{flex-basis:46%}.hero-content{max-width:720px}.contact-links{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:360px){.hero-row{grid-template-columns:1fr 1fr}.hero-photo{display:none}.bnav a{font-size:.6rem}}
+@media(min-width:901px) and (max-width:1100px){.wrap{padding:0 1.5rem}.grid{grid-template-columns:repeat(2,1fr)}#projet .grid{grid-template-columns:minmax(0,640px)!important}.fresque-phases{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -232,8 +327,9 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
      <p class="hero-intro">Titulaire d'un <strong style="color:#fff">Bachelor de Technologie</strong> et du <strong style="color:#fff">CQPM-CPI</strong>, en <strong style="color:#fff">formation d'ingénieur en alternance mécanique et mécatronique</strong> avec l'ISTP, Mines Saint-Étienne et ENSAM Cluny, chez <strong style="color:#fff">Schneider Electric</strong>.</p>
       <div class="hero-row">
         <img src="images/profile.jpg" alt="Portrait d'Arsène Kuhlich" class="hero-photo">
-        <a href="#formations" class="btn-gold">Mon Parcours <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
-        <a href="#contact" class="btn-outline">Me contacter</a>
+        <a href="#missions" class="btn-gold">Mes missions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a href="#projet" class="btn-outline">Projet perso</a>
+        <a href="#contact" class="btn-outline hide-m">Me contacter</a>
       </div>
     </div>
   </div>
@@ -278,7 +374,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-logo">
-          <img src="images/logo-sti2d.png" alt="Logo STI2D">
+          <img loading="lazy" decoding="async" src="images/logo-sti2d.png" alt="Logo STI2D">
         </div>
         <div class="timeline-content">
           <h4>Baccalauréat Technologique STI2D</h4>
@@ -289,7 +385,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <div class="timeline-item reveal reveal-d1">
         <div class="timeline-dot"></div>
         <div class="timeline-logo">
-          <img src="images/logo-arts-metiers.png" alt="Logo Arts et Métiers">
+          <img loading="lazy" decoding="async" src="images/logo-arts-metiers.png" alt="Logo Arts et Métiers">
         </div>
         <div class="timeline-content">
           <h4>Bachelor de Technologie</h4>
@@ -309,8 +405,8 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <div class="timeline-item reveal reveal-d2">
         <div class="timeline-dot"></div>
         <div class="timeline-logo-group">
-          <div class="timeline-logo"><img src="images/logo-mines-saint-etienne.png" alt="Logo Mines Saint-Étienne"></div>
-          <div class="timeline-logo"><img src="images/logo-arts-metiers.png" alt="Logo ENSAM Cluny"></div>
+          <div class="timeline-logo"><img loading="lazy" decoding="async" src="images/logo-mines-saint-etienne.png" alt="Logo Mines Saint-Étienne"></div>
+          <div class="timeline-logo"><img loading="lazy" decoding="async" src="images/logo-arts-metiers.png" alt="Logo ENSAM Cluny"></div>
         </div>
         <div class="timeline-content">
           <h4>Ingénieur de Spécialité Mécanique et Mécatronique</h4>
@@ -342,7 +438,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- MISSION 6 — Contrat Pro Schneider -->
       <div class="card reveal" onclick="toggle(this)">
         <div class="card-img">
-          <img src="images/vigi-springs.jpg" alt="Mécanique Vigi">
+          <img loading="lazy" decoding="async" src="images/vigi-springs.jpg" alt="Mécanique Vigi">
           <span class="card-badge">Contrat Pro</span>
           <span class="card-time">2025–2026 · 11 mois</span>
         </div>
@@ -373,7 +469,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- MISSION 5 — Stage Technicien Schneider -->
       <div class="card reveal reveal-d1" onclick="toggle(this)">
         <div class="card-img">
-          <img src="images/cae-slide.jpg" alt="Banc CAE Schneider">
+          <img loading="lazy" decoding="async" src="images/cae-slide.jpg" alt="Banc CAE Schneider">
           <span class="card-badge">Stage Technicien</span>
           <span class="card-time">2024–2025 · 3 mois</span>
         </div>
@@ -398,7 +494,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- MISSION 1 — Détection poussière -->
       <div class="card reveal reveal-d2" onclick="toggle(this)">
         <div class="card-img">
-          <img src="images/dust-system.jpg" alt="Système détection poussière">
+          <img loading="lazy" decoding="async" src="images/dust-system.jpg" alt="Système détection poussière">
           <span class="card-badge">Stage Mobilité</span>
           <span class="card-time">2023–2024 · 2 mois</span>
         </div>
@@ -410,7 +506,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
         </div>
         <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="card-detail"><div class="card-detail-inner">
-          <div class="d-img"><img src="images/dust-ai.jpg" alt="IDS Lighthouse - Dust Detection"></div>
+          <div class="d-img"><img loading="lazy" decoding="async" src="images/dust-ai.jpg" alt="IDS Lighthouse - Dust Detection"></div>
           <div class="d-label">Mission</div>
           <div class="d-text">Concevoir un système prototype pour détecter la poussière en live dans les salles blanches, au niveau des portes d'entrée, afin de limiter l'arrivée de bactéries.</div>
           <div class="d-grid">
@@ -424,7 +520,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- MISSION 2 — Hänel -->
       <div class="card reveal" onclick="toggle(this)">
         <div class="card-img">
-          <img src="images/hanel-panel.jpg" alt="Panneau Hänel">
+          <img loading="lazy" decoding="async" src="images/hanel-panel.jpg" alt="Panneau Hänel">
           <span class="card-badge">Stage Mobilité</span>
           <span class="card-time">2023–2024 · 4 sem.</span>
         </div>
@@ -449,7 +545,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- MISSION 3 — MERI -->
       <div class="card reveal reveal-d1" onclick="toggle(this)">
         <div class="card-img">
-          <img src="images/meri-badge.jpg" alt="Projet MERI" style="object-fit:contain;background:#1a0f2e">
+          <img loading="lazy" decoding="async" src="images/meri-badge.jpg" alt="Projet MERI" style="object-fit:contain;background:#1a0f2e">
           <span class="card-badge">Projet Académique</span>
           <span class="card-time">2023–2025 · 2 ans</span>
         </div>
@@ -462,8 +558,8 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
         <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
         <div class="card-detail"><div class="card-detail-inner">
           <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
-            <div class="d-img" style="flex:1;min-width:250px"><img src="images/meri-schema.jpg" alt="Schéma MERI"></div>
-            <div class="d-img" style="width:180px"><img src="images/meri-top.jpg" alt="WP2300 vue du dessus"></div>
+            <div class="d-img" style="flex:1;min-width:250px"><img loading="lazy" decoding="async" src="images/meri-schema.jpg" alt="Schéma MERI"></div>
+            <div class="d-img" style="width:180px"><img loading="lazy" decoding="async" src="images/meri-top.jpg" alt="WP2300 vue du dessus"></div>
           </div>
           <div class="d-label">Mission</div>
           <div class="d-text">Premier projet technique structurant du cursus : réaliser une maquette évolutive en vitrine de la formation Bachelor. Application concrète des connaissances en travail d'équipe et conception d'une ligne de production de bougies automatisée.</div>
@@ -478,7 +574,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- MISSION 4 — Becton Dickinson -->
       <div class="card reveal reveal-d2" onclick="toggle(this)">
         <div class="card-img">
-          <img src="images/bd-timeline.jpg" alt="Becton Dickinson" style="object-fit:contain;background:#fff">
+          <img loading="lazy" decoding="async" src="images/bd-timeline.jpg" alt="Becton Dickinson" style="object-fit:contain;background:#fff">
           <span class="card-badge">Stage Exécutant</span>
           <span class="card-time">2023–2024 · 4 sem.</span>
         </div>
@@ -515,7 +611,8 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
       <!-- PROJET — Assistance à la vente -->
       <div class="card reveal" onclick="toggle(this)">
         <div class="card-img" style="height:260px">
-          <img src="images/assistance-vente-cover.jpg" alt="Boutons physiques et étiquettes imprimées en 3D">
+          <img loading="lazy" decoding="async" src="images/assistance-vente-cover.jpg" alt="Boutons physiques et étiquettes imprimées en 3D">
+          <button class="play-cover" onclick="event.stopPropagation();openVideo()" aria-label="Voir la vidéo de présentation (2 minutes)"><span class="pc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Voir la vidéo · 2 min</span></button>
           <span class="card-badge">Projet personnel</span>
           <span class="card-time">2026 · prototype</span>
         </div>
@@ -547,8 +644,9 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
             <img src="images/assistance-vente-3d-etiquettes.jpg" alt="Étiquettes des boutons" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
             <img src="images/assistance-vente-cablage.jpg" alt="Câblage du boîtier" loading="lazy" style="border-radius:10px;border:1px solid var(--border);cursor:zoom-in;object-fit:cover;object-position:center 35%;height:210px;width:100%" onclick="event.stopPropagation();openImg(this.src)">
           </div>
-          <a href="pdf/projet-assistance-vente.pdf" target="_blank" class="pdf-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche projet complète (PDF)</a>
-          <a href="demo-caisse/" target="_blank" rel="noopener" class="pdf-btn" style="background:var(--gold);color:var(--purple-dark);margin-left:.5rem" onclick="event.stopPropagation()">Essayer la démo (données fictives)</a>
+          <a href="pdf/projet-assistance-vente.pdf" target="_blank" class="pdf-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche projet (PDF)</a>
+          <button class="pdf-btn" style="background:var(--gold);color:var(--purple-dark);border:0;cursor:pointer;margin-left:.5rem" onclick="event.stopPropagation();openVideo()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Vidéo</button>
+          <a href="demo-caisse/" target="_blank" rel="noopener" class="pdf-btn" style="background:#fff;color:var(--purple);border:1.5px solid var(--purple);margin-left:.5rem" onclick="event.stopPropagation()">Essayer la démo</a>
         </div></div>
       </div>
 
@@ -684,7 +782,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
 
     <div class="fresque-wrap reveal">
       <div class="fresque-img-container" onclick="openLightbox()">
-        <img src="images/fresque.jpg" alt="Fresque du Bachelor de Technologie Arts et Métiers — Arsène Kuhlich">
+        <img loading="lazy" decoding="async" src="images/fresque.jpg" alt="Fresque du Bachelor de Technologie Arts et Métiers — Arsène Kuhlich">
         <span class="fresque-zoom-hint">🔍 Cliquer pour agrandir</span>
       </div>
 
@@ -817,8 +915,22 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
 <!-- ═══ LIGHTBOX ═══ -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-  <img src="images/fresque.jpg" alt="Fresque du Bachelor">
+  <img loading="lazy" decoding="async" src="images/fresque.jpg" alt="Fresque du Bachelor">
 </div>
+
+
+<div class="vmodal" id="vmodal" onclick="if(event.target===this)closeVideo()" role="dialog" aria-modal="true" aria-label="Vidéo de présentation du projet">
+  <button class="vmodal-close" onclick="closeVideo()" aria-label="Fermer la vidéo">&times;</button>
+  <video controls playsinline preload="none" poster="images/assistance-vente-video-poster.jpg"></video>
+</div>
+
+<nav class="bnav" aria-label="Navigation rapide">
+  <a href="#top" data-g="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Accueil</a>
+  <a href="#missions" data-g="missions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/></svg>Missions</a>
+  <a href="#projet" data-g="projet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>Projet</a>
+  <a href="#formations" data-g="parcours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c3 2 9 2 12 0v-5"/></svg>Parcours</a>
+  <a href="#contact" data-g="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a>
+</nav>
 
 <script>
 function showTab(n){
@@ -845,6 +957,69 @@ window.addEventListener('scroll',()=>{
   document.querySelectorAll('[id]').forEach(s=>{if(scrollY>=s.offsetTop-140)cur=s.id});
   navs.forEach(n=>n.classList.toggle('active',n.getAttribute('href')==='#'+cur));
 });
+
+/* ═══ Vidéo ═══ */
+function openVideo(){
+  var m=document.getElementById('vmodal'),v=m.querySelector('video');
+  if(!v.getAttribute('src')) v.src='video/assistance-a-la-vente.mp4';
+  m.classList.add('active'); document.body.style.overflow='hidden';
+  var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+}
+function closeVideo(){
+  var m=document.getElementById('vmodal'),v=m.querySelector('video');
+  v.pause(); m.classList.remove('active'); document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVideo()});
+
+/* ═══ Mobile : sections repliables, carrousels, navigation du bas ═══ */
+(function(){
+  var mq=window.matchMedia('(max-width:900px)');
+  var TEASERS={formations:'Bac STI2D, Bachelor ENSAM, cycle ingénieur',valorisation:'Savoirs, savoir-faire et savoir-être par expérience',fresque:'Mon parcours 2023–2026 en une image',competences:'Outils, logiciels et méthodes',recommandations:'Ce que disent mes tuteurs'};
+  var CHEV='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B1D5E" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg>';
+  function revealAll(sec){sec.querySelectorAll('.reveal').forEach(function(e){e.classList.add('vis')})}
+  function openSec(sec){if(sec&&sec.classList.contains('acc')&&!sec.classList.contains('open')){sec.classList.add('open');var h=sec.querySelector(':scope > .reveal');if(h)h.setAttribute('aria-expanded','true');revealAll(sec)}}
+  var heads=[];
+  Object.keys(TEASERS).forEach(function(id){
+    var sec=document.getElementById(id); if(!sec) return;
+    var head=sec.querySelector(':scope > .reveal'); if(!head) return;
+    var body=document.createElement('div'); body.className='sec-body';
+    var n=head.nextSibling; while(n){var nx=n.nextSibling; body.appendChild(n); n=nx}
+    sec.appendChild(body); sec.classList.add('acc');
+    head.insertAdjacentHTML('beforeend','<div class="acc-teaser">'+TEASERS[id]+'</div><span class="acc-chev">'+CHEV+'</span>');
+    function t(){var o=sec.classList.toggle('open');head.setAttribute('aria-expanded',o);if(o)revealAll(sec)}
+    head.addEventListener('click',function(){if(mq.matches)t()});
+    head.addEventListener('keydown',function(e){if(mq.matches&&(e.key==='Enter'||e.key===' ')){e.preventDefault();t()}});
+    heads.push(head);
+  });
+  function sync(){heads.forEach(function(h){if(mq.matches){h.setAttribute('role','button');h.setAttribute('tabindex','0');h.setAttribute('aria-expanded',h.parentNode.classList.contains('open'))}else{h.removeAttribute('role');h.removeAttribute('tabindex');h.removeAttribute('aria-expanded')}})}
+  sync(); (mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));
+  /* un lien d'ancre ouvre la section visée */
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1);if(id)openSec(document.getElementById(id))});
+  if(location.hash){openSec(document.getElementById(location.hash.slice(1)))}
+
+  /* carrousels (missions, recommandations) : points indicateurs */
+  function carousel(scroller){
+    if(!scroller) return;
+    var cards=[].slice.call(scroller.children); if(cards.length<2) return;
+    scroller.style.position='relative';
+    var d=document.createElement('div'); d.className='dots'; d.setAttribute('aria-hidden','true');
+    cards.forEach(function(c,i){var b=document.createElement('i');b.onclick=function(){scroller.scrollTo({left:c.offsetLeft-(scroller.clientWidth-c.offsetWidth)/2,behavior:'smooth'})};d.appendChild(b)});
+    scroller.parentNode.insertBefore(d,scroller.nextSibling);
+    var raf=0;
+    function upd(){raf=0;var mid=scroller.scrollLeft+scroller.clientWidth/2,best=0,bd=1e9;cards.forEach(function(c,i){var dd=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);if(dd<bd){bd=dd;best=i}});[].forEach.call(d.children,function(x,i){x.classList.toggle('on',i===best)})}
+    scroller.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(upd)},{passive:true}); upd();
+  }
+  carousel(document.querySelector('#missions .grid'));
+  carousel(document.querySelector('.reco-grid'));
+
+  /* navigation du bas : section courante */
+  var MAP={top:'top',formations:'parcours',missions:'missions',projet:'projet',valorisation:'parcours',fresque:'parcours',competences:'parcours',recommandations:'parcours',contact:'contact'};
+  var order=['top','formations','missions','projet','valorisation','fresque','competences','recommandations','contact'];
+  var links=[].slice.call(document.querySelectorAll('.bnav a')),tick=0;
+  function spy(){tick=0;var cur='top',y=window.scrollY+window.innerHeight*.35;order.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top+window.scrollY<=y)cur=id});
+    var g=MAP[cur];links.forEach(function(a){a.classList.toggle('active',a.dataset.g===g)})}
+  window.addEventListener('scroll',function(){if(!tick)tick=requestAnimationFrame(spy)},{passive:true}); spy();
+})();
 </script>
 </body>
 </html>
