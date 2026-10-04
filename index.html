@@ -517,7 +517,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
         <div class="card-img" style="height:260px">
           <img src="images/assistance-vente-cover.jpg" alt="Boutons physiques et étiquettes imprimées en 3D">
           <span class="card-badge">Projet personnel</span>
-          <span class="card-time">2026 · prototype fonctionnel</span>
+          <span class="card-time">2026 · prototype</span>
         </div>
         <div class="card-body">
           <div class="card-co"><div class="card-dot" style="background:#C8960C"></div><span class="card-co-name">Fournil des Chouettes — marchés</span></div>
@@ -532,7 +532,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
           <div class="d-label">La solution</div>
           <div class="d-text">Une interface de caisse web, conçue et développée de bout en bout (produits, panier, rendu de monnaie, stock, historique, réservations, commandes professionnelles), complétée par un boîtier de boutons posé sur l'étal : un bouton par pain, un appui ajoute le pain au panier. Plus besoin de calculer ni de noter, le marchand garde l'attention sur l'humain.</div>
           <div class="d-label">Réalisation</div>
-          <div class="d-text">Caisse en HTML, CSS et JavaScript, données dans Supabase, déploiement automatique GitHub → Vercel · 2 cartes ESP32 programmées en Arduino C++ : anti-rebond, détection de gestes (appui court, rafales ×5 et ×10, maintien 3 s pour le mode retrait, 5 s pour retirer un pain), envoi HTTPS dans une tâche FreeRTOS dédiée avec file d'attente pour ne perdre aucun appui · Boîtiers et étiquettes modélisés sous Fusion 360 et imprimés en 3D · Câblage par bornes à vis et WAGO, sans soudure.</div>
+          <div class="d-text">Caisse en HTML, CSS et JavaScript, données dans Supabase, déploiement automatique GitHub → Vercel · 2 cartes ESP32 programmées en Arduino C++ : anti-rebond, détection de gestes (appui court, rafales ×5 et ×10, maintien 3 s pour le mode retrait, 5 s pour retirer un pain), envoi HTTPS dans une tâche FreeRTOS dédiée avec file d'attente pour ne perdre aucun appui · Boîtiers modélisés sous Fusion 360, étiquettes préparées sous Bambu Studio, le tout imprimé en 3D · Câblage par bornes à vis et WAGO, sans soudure.</div>
           <div class="d-label">Fait marquant</div>
           <div class="d-text">La plupart des clients paient en espèces : un bouton Espèces ouvre le rendu de monnaie en un appui et encaisse en deux. Toute la vente peut se faire sans toucher l'écran.</div>
           <div class="d-grid">
@@ -540,11 +540,11 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
             <div class="d-box"><strong>Compétences mobilisées</strong>CAO et impression 3D, électronique embarquée, programmation temps réel, développement web, base de données, conception centrée utilisateur. Budget total : 82,05 €.</div>
           </div>
           <div class="d-label">En images (cliquer pour agrandir)</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;align-items:center;margin-bottom:1.2rem">
             <img src="images/assistance-vente-architecture.jpg" alt="Schéma d'architecture" loading="lazy" style="grid-column:1/-1;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
-            <img src="images/assistance-vente-caisse.jpg" alt="Interface de caisse" loading="lazy" style="height:210px;width:100%;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
-            <img src="images/assistance-vente-3d-boitier.jpg" alt="Boîtier éclaté" loading="lazy" style="height:210px;width:100%;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in;background:#fff" onclick="event.stopPropagation();openImg(this.src)">
-            <img src="images/assistance-vente-3d-etiquettes.jpg" alt="Étiquettes des boutons" loading="lazy" style="height:210px;width:100%;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-caisse.jpg" alt="Interface de caisse" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-3d-boitier.jpg" alt="Boîtier éclaté" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--border);cursor:zoom-in;background:#fff" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-3d-etiquettes.jpg" alt="Étiquettes des boutons" loading="lazy" style="width:100%;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
             <img src="images/assistance-vente-cablage.jpg" alt="Câblage du boîtier" loading="lazy" style="border-radius:10px;border:1px solid var(--border);cursor:zoom-in;object-fit:cover;object-position:center 35%;height:210px;width:100%" onclick="event.stopPropagation();openImg(this.src)">
           </div>
           <a href="pdf/projet-assistance-vente.pdf" target="_blank" class="pdf-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche projet complète (PDF)</a>
