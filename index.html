@@ -234,7 +234,7 @@ body{-webkit-tap-highlight-color:transparent}
 .play-cover:hover .pc{transform:scale(1.05)}
 .vmodal{display:none;position:fixed;inset:0;z-index:1100;background:rgba(12,5,11,.95);align-items:center;justify-content:center;padding:1rem}
 .vmodal.active{display:flex}
-.vmodal video{width:100%;max-width:1100px;max-height:82vh;border-radius:12px;background:#000;outline:0}
+.vmodal video{width:100%;max-width:1100px;max-height:82vh;border-radius:12px;background:#000;outline:0;object-fit:contain}
 .vmodal-close{position:absolute;top:max(.8rem,env(safe-area-inset-top));right:.8rem;width:46px;height:46px;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:1.7rem;line-height:1;cursor:pointer}
 .pdf-btn{min-height:42px}
 
@@ -612,7 +612,7 @@ body{-webkit-tap-highlight-color:transparent}
       <div class="card reveal" onclick="toggle(this)">
         <div class="card-img" style="height:260px">
           <img loading="lazy" decoding="async" src="images/assistance-vente-cover.jpg" alt="Boutons physiques et étiquettes imprimées en 3D">
-          <button class="play-cover" onclick="event.stopPropagation();openVideo()" aria-label="Voir la vidéo de présentation (2 minutes)"><span class="pc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Voir la vidéo · 2 min</span></button>
+          <button class="play-cover" onclick="event.stopPropagation();openVideo()" aria-label="Voir la vidéo de présentation (moins de 2 minutes)"><span class="pc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Voir la vidéo · moins de 2 min</span></button>
           <span class="card-badge">Projet personnel</span>
           <span class="card-time">2026 · prototype</span>
         </div>
@@ -961,7 +961,9 @@ window.addEventListener('scroll',()=>{
 /* ═══ Vidéo ═══ */
 function openVideo(){
   var m=document.getElementById('vmodal'),v=m.querySelector('video');
-  if(!v.getAttribute('src')) v.src='video/assistance-a-la-vente.mp4';
+  var vert=window.matchMedia('(max-width:700px) and (orientation:portrait)').matches;
+  var src=vert?'video/assistance-a-la-vente-vertical.mp4?v=3':'video/assistance-a-la-vente.mp4?v=3';
+  if(v.getAttribute('src')!==src){v.setAttribute('poster',vert?'images/assistance-vente-video-poster-vertical.jpg':'images/assistance-vente-video-poster.jpg');v.setAttribute('src',src);v.load();}
   m.classList.add('active'); document.body.style.overflow='hidden';
   var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
 }

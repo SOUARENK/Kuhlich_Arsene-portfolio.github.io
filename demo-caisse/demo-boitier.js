@@ -39,7 +39,31 @@
     '.dbBtn.rafale::after{content:"⚡";position:absolute;top:3px;right:6px;font-size:11px}' +
     '.dbBar{position:absolute;left:0;bottom:0;height:4px;width:0;background:#E8B830}.dbBar.go{width:100%;transition:width 5s linear}' +
     '.dbBar.warn{background:#ef4444}' +
-    '#dbHelp{margin-top:10px;font-size:11px;color:#9a9a9a;line-height:1.5}#dbHelp b{color:#ddd}';
+    '#dbHelp{margin-top:10px;font-size:11px;color:#9a9a9a;line-height:1.5}#dbHelp b{color:#ddd}' +
+    '.demo-chip{display:none}#dbQ{display:none;width:24px;height:24px;border-radius:50%;border:1.5px solid #888;background:transparent;color:#ddd;font:700 13px "DM Sans",sans-serif;cursor:pointer;padding:0}' +
+    '@keyframes dbp{0%,100%{box-shadow:0 0 0 0 rgba(232,184,48,0)}50%{box-shadow:0 0 0 5px rgba(232,184,48,.75)}}' +
+    /* ≤ 900 px : téléphone et petite tablette */
+    '@media(max-width:900px){' +
+      '#dbBadge,#dbToggle{display:none}' +
+      '.demo-chip{display:inline-block;margin-left:8px;background:#C8960C;color:#2a1a00;font:700 9px/1 "DM Sans",sans-serif;letter-spacing:.6px;padding:4px 8px;border-radius:10px;vertical-align:middle;text-transform:uppercase}' +
+      '#dbPanel{left:8px;right:8px;width:auto;max-width:none;padding:10px;border-radius:14px}' +
+      '#dbPanel h4{font-size:13px;margin-bottom:8px}#dbPanel p{display:none}' +
+      '#dbGrid{grid-template-columns:repeat(4,1fr);gap:6px}' +
+      '.dbBtn{padding:8px 2px;font-size:10.5px;border-radius:10px}.dbBtn .e{font-size:18px;margin-bottom:0}' +
+      '#dbQ{display:inline-block}#dbHelp{display:none;font-size:10.5px;margin-top:8px;line-height:1.45}#dbHelp.show{display:block}' +
+      '#dbTab.pulse{animation:dbp 1.4s ease-in-out infinite}#dbTab.dbon{background:#C8960C;color:#2a1a00}' +
+    '}' +
+    '@media(min-width:901px){#dbTab{display:none}}' +
+    /* paysage de téléphone : on libère la hauteur de la caisse */
+    '@media(max-height:520px) and (max-width:1000px){' +
+      '.header{height:38px!important;padding:3px 12px!important}.header-ca-amount{font-size:17px!important}' +
+      '.mode-strip{padding-top:3px!important;padding-bottom:3px!important;min-height:0!important}' +
+      '.product-search-wrap,#stockBar{display:none!important}' +
+      '.products-grid{grid-template-columns:repeat(auto-fill,minmax(92px,1fr))!important;gap:6px!important}' +
+      '.product-btn{height:104px!important;min-height:0!important}' +
+      '.tabs{padding:3px 8px!important}.tab{padding:5px 2px!important;font-size:11px!important}' +
+      '#dbHelp{display:none}#dbPanel{max-height:62vh;overflow:auto;left:auto;width:340px}' +
+    '}';
   document.head.appendChild(css);
 
   var badge = document.createElement('div');
@@ -52,7 +76,7 @@
 
   var panel = document.createElement('div'); panel.id = 'dbPanel';
   panel.innerHTML =
-    '<h4>Boîtier à boutons (simulé)<span id="dbLed" title="LED de la carte ESP32"></span></h4>' +
+    '<h4>Boîtier à boutons (simulé)<span style="display:flex;gap:10px;align-items:center"><button id="dbQ" aria-label="Aide sur les gestes">?</button><span id="dbLed" title="LED de la carte ESP32"></span></span></h4>' +
     '<p>Ces boutons envoient à la caisse les mêmes messages que mon vrai boîtier.</p>' +
     '<div id="dbGrid"></div>' +
     '<div id="dbHelp"><b>Appui court</b> : +1 pain · <b>Maintenu 3 s</b> : mode retrait · <b>5 s</b> : retire le pain<br>' +
@@ -60,8 +84,24 @@
     '<b>Espèces</b> : 1 appui = rendu de monnaie, 2 appuis = encaisse</div>';
   document.body.appendChild(panel);
 
-  toggle.onclick = function () { panel.classList.toggle('open'); };
-  if (window.innerWidth > 700) panel.classList.add('open');
+  var narrow = function () { return window.innerWidth <= 900; };
+  function place() { var tabs = document.querySelector('.tabs'); panel.style.bottom = narrow() && tabs ? (tabs.getBoundingClientRect().height + 8) + 'px' : ''; }
+  var dbTab = null;
+  function setOpen(o) { panel.classList.toggle('open', o); if (dbTab) { dbTab.classList.toggle('dbon', o); dbTab.classList.remove('pulse'); } place(); }
+  panel.querySelector('#dbQ').onclick = function (e) { e.stopPropagation(); panel.querySelector('#dbHelp').classList.toggle('show'); place(); };
+  toggle.onclick = function () { setOpen(!panel.classList.contains('open')); };
+  var tabsBar = document.querySelector('.tabs');
+  if (tabsBar) {
+    dbTab = document.createElement('button'); dbTab.className = 'tab pulse'; dbTab.id = 'dbTab'; dbTab.textContent = '🔘 Boîtier';
+    dbTab.onclick = function (e) { e.stopPropagation(); setOpen(!panel.classList.contains('open')); };
+    tabsBar.appendChild(dbTab);
+  }
+  var ht = document.querySelector('.header-title');
+  if (ht) { var chip = document.createElement('span'); chip.className = 'demo-chip'; chip.textContent = 'Démo'; ht.appendChild(chip); }
+  var ps = document.getElementById('productSearch'); if (ps && narrow()) ps.placeholder = 'Chercher un pain…';
+  if (!narrow()) panel.classList.add('open');
+  window.addEventListener('resize', place); window.addEventListener('orientationchange', function () { setTimeout(place, 300); });
+  place();
 
   var grid = panel.querySelector('#dbGrid');
   BTNS.forEach(function (b) {
