@@ -244,6 +244,7 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
   <div class="nav-inner">
     <a href="#formations" class="nav-link">Formations</a>
     <a href="#missions" class="nav-link active">Missions</a>
+    <a href="#projet" class="nav-link">Projet perso</a>
     <a href="#valorisation" class="nav-link">Valorisation</a>
     <a href="#fresque" class="nav-link">Fresque</a>
     <a href="#competences" class="nav-link">Compétences</a>
@@ -501,6 +502,59 @@ footer{text-align:center;padding:2rem;color:var(--text-light);font-size:.76rem;b
 
     </div>
   </section>
+
+  <!-- ═══ PROJET PERSONNEL ═══ -->
+  <section class="sec" id="projet">
+    <div class="reveal">
+      <span class="sec-label">Au-delà de l'entreprise</span>
+      <h2 class="sec-title">Projet personnel</h2>
+      <p class="sec-sub">Un projet de bout en bout, de l'idée à l'objet : web, électronique, programmation et fabrication.</p>
+    </div>
+    <div class="grid" style="grid-template-columns:minmax(0,640px)">
+
+      <!-- PROJET — Assistance à la vente -->
+      <div class="card reveal" onclick="toggle(this)">
+        <div class="card-img" style="height:260px">
+          <img src="images/assistance-vente-cover.jpg" alt="Boutons physiques et étiquettes imprimées en 3D">
+          <span class="card-badge">Projet personnel</span>
+          <span class="card-time">2026 · prototype fonctionnel</span>
+        </div>
+        <div class="card-body">
+          <div class="card-co"><div class="card-dot" style="background:#C8960C"></div><span class="card-co-name">Fournil des Chouettes — marchés</span></div>
+          <h3>Assistance à la vente — caisse web et boutons physiques</h3>
+          <p class="card-excerpt">Une interface de caisse web et un boîtier de 20 boutons physiques pour qu'un commerçant de marché encaisse sans calculer ni noter. Conception complète : application web, base de données, électronique ESP32, firmware, boîtiers imprimés en 3D. Matériel : 82 €.</p>
+          <div class="card-chips"><span class="chip">ESP32</span><span class="chip">Arduino C++</span><span class="chip">JavaScript</span><span class="chip">Supabase</span><span class="chip">Fusion 360</span><span class="chip">Impression 3D</span></div>
+        </div>
+        <div class="card-toggle">Voir le détail <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="card-detail"><div class="card-detail-inner">
+          <div class="d-label">Le besoin</div>
+          <div class="d-text">Sur un marché, l'artisan sert une file de clients les mains occupées. Il doit retenir la commande, calculer le total, rendre la monnaie et noter ses ventes : autant de moments où il ne regarde pas le client.</div>
+          <div class="d-label">La solution</div>
+          <div class="d-text">Une interface de caisse web, conçue et développée de bout en bout (produits, panier, rendu de monnaie, stock, historique, réservations, commandes professionnelles), complétée par un boîtier de boutons posé sur l'étal : un bouton par pain, un appui ajoute le pain au panier. Plus besoin de calculer ni de noter, le marchand garde l'attention sur l'humain.</div>
+          <div class="d-label">Réalisation</div>
+          <div class="d-text">Caisse en HTML, CSS et JavaScript, données dans Supabase, déploiement automatique GitHub → Vercel · 2 cartes ESP32 programmées en Arduino C++ : anti-rebond, détection de gestes (appui court, rafales ×5 et ×10, maintien 3 s pour le mode retrait, 5 s pour retirer un pain), envoi HTTPS dans une tâche FreeRTOS dédiée avec file d'attente pour ne perdre aucun appui · Boîtiers et étiquettes modélisés sous Fusion 360 et imprimés en 3D · Câblage par bornes à vis et WAGO, sans soudure.</div>
+          <div class="d-label">Fait marquant</div>
+          <div class="d-text">La plupart des clients paient en espèces : un bouton Espèces ouvre le rendu de monnaie en un appui et encaisse en deux. Toute la vente peut se faire sans toucher l'écran.</div>
+          <div class="d-grid">
+            <div class="d-box"><strong>Où en est le projet</strong>Prototype fonctionnel, testé avec 3 boutons branchés (appui simple et quantités négatives, démultiplication, encaissement en espèces). Les 20 boutons sont conçus, câblés et étiquetés ; l'installation sur l'étal est la prochaine étape.</div>
+            <div class="d-box"><strong>Compétences mobilisées</strong>CAO et impression 3D, électronique embarquée, programmation temps réel, développement web, base de données, conception centrée utilisateur. Budget total : 82,05 €.</div>
+          </div>
+          <div class="d-label">En images (cliquer pour agrandir)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem">
+            <img src="images/assistance-vente-architecture.jpg" alt="Schéma d'architecture" loading="lazy" style="grid-column:1/-1;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-caisse.jpg" alt="Interface de caisse" loading="lazy" style="height:210px;width:100%;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-3d-boitier.jpg" alt="Boîtier éclaté" loading="lazy" style="height:210px;width:100%;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in;background:#fff" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-3d-etiquettes.jpg" alt="Étiquettes des boutons" loading="lazy" style="height:210px;width:100%;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in" onclick="event.stopPropagation();openImg(this.src)">
+            <img src="images/assistance-vente-cablage.jpg" alt="Câblage du boîtier" loading="lazy" style="border-radius:10px;border:1px solid var(--border);cursor:zoom-in;object-fit:cover;object-position:center 35%;height:210px;width:100%" onclick="event.stopPropagation();openImg(this.src)">
+          </div>
+          <a href="pdf/projet-assistance-vente.pdf" target="_blank" class="pdf-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Fiche projet complète (PDF)</a>
+          <a href="https://fournil-des-chouettes.vercel.app/" target="_blank" rel="noopener noreferrer" class="pdf-btn" style="background:var(--gold);color:var(--purple-dark);margin-left:.5rem" onclick="event.stopPropagation()">Voir la caisse en ligne</a>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- ═══ VALORISATION D'EXPERIENCE ═══ -->
   <section class="sec" id="valorisation">
@@ -778,7 +832,8 @@ function toggle(c){
   document.querySelectorAll('.timeline-toggle').forEach(btn=>btn.setAttribute('aria-expanded', btn.closest('.timeline-item').classList.contains('open')));
 }
 function openLightbox(){document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+function openImg(src){var i=document.querySelector('#lightbox img');if(!i.dataset.orig)i.dataset.orig=i.getAttribute('src');i.src=src;openLightbox()}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';var i=document.querySelector('#lightbox img');if(i.dataset.orig)i.src=i.dataset.orig}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
 
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
